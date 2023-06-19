@@ -1,1 +1,1 @@
-## Lendocare UA
+## LendoCare UA
