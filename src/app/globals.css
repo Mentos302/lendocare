@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
 @layer components {
    .scale-animation {
      @apply hover:scale-[.97] duration-500 transition-all;
@@ -12,5 +18,7 @@
    .btn-outline {
       @apply px-6 py-3 bg-transparent rounded-[48px] border-2 border-primary-01 text-primary-01 font-semibold hover:bg-primary-01 hover:text-white duration-300 transition-all 
    }
-  
+   .container-box {
+      @apply mx-auto max-w-7xl px-7 lg:px-8;
+   }
  }

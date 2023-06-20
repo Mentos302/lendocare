@@ -1,10 +1,11 @@
 import React from "react";
 import { SvgFooterLogo, SvgLogo } from "../(svg)/AllSvg";
+import Link from "next/link";
 
 const Footer = () => {
   return (
     <footer className="bg-light-blue" aria-labelledby="footer-heading">
-      <div className="mx-auto max-w-7xl px-6 mt-20 sm:pt-8 sm:pb-7 lg:pt-16">
+      <div className="mx-auto max-w-7xl px-6 sm:pt-8 lg:pb-7 lg:pt-16">
         <div className="flex flex-col sm:flex-col-reverse lg:flex-row">
           <div className="flex justify-center lg:justify-start my-5 lg:my-0">
             <SvgLogo />
@@ -23,8 +24,8 @@ const Footer = () => {
               <h3 className="mb-5 sm:mb-8 text-lg font-semibold text-gray-01">
                 Компанія
               </h3>
-              <div className="space-y-4 text-gray-03 text-sm sm:text-base">
-                <div>Про нас</div>
+              <div className="space-y-4 text-gray-03 text-sm sm:text-base scale-animation">
+                <Link href="/about-us">Про нас</Link>
               </div>
             </div>
             <div>
@@ -33,20 +34,22 @@ const Footer = () => {
               </h3>
               <div className="space-y-4 text-gray-03 text-sm sm:text-base">
                 <div>
-                  <span className="font-bold">Email: </span> info@lendocare.com
+                  <span className="font-bold">Email: </span>{" "}
+                  <a href="mailto: info@lendocare.com">info@lendocare.com</a>
                 </div>
                 <div>
-                  <span className="font-bold">Phone: </span> 0203 005 2385
+                  <span className="font-bold">Phone: </span>{" "}
+                  <a href="tel:+02030052385">+ 0203 005 2385</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="mt-5 text-gray-03 text-sm sm:text-base text-center">
+        <div className="mt-4 lg:mt-10 text-gray-03 text-sm sm:text-base text-center">
           © Copyright 2023 Lendolabs. All Rights Reserved. Company no. 11910916
         </div>
       </div>
-      <div className="block sm:hidden">
+      <div className="block lg:hidden">
         <SvgFooterLogo />
       </div>
     </footer>
