@@ -10,11 +10,20 @@ import CartDropdown from "./CartDropdown";
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cartModalOpen, setCartModalOpen] = useState(false);
   const pathname = usePathname();
 
   const onCloseNodalHandler = () => {
     setMobileMenuOpen(false);
   };
+
+  const onOpenCartModalHandler = () => {
+    setCartModalOpen(true);
+  };
+  const onCloseCartModalHandler = () => {
+    setCartModalOpen(false);
+  };
+
   return (
     <header className="mb-5 bg-white lg:mb-0">
       <nav
@@ -71,10 +80,16 @@ export default function Example() {
           </Link>
         </div>
         <div className="hidden gap-4 lg:flex lg:flex-1 lg:justify-end">
-          {/* <button className="px-6 py-3 border-2 border-primary-01 rounded-[48px] scale-animation">
+          <button
+            onClick={onOpenCartModalHandler}
+            className="px-6 py-3 border-2 border-primary-01 rounded-[48px] scale-animation"
+          >
             <SvgCart />
-          </button> */}
-          <CartDropdown />
+          </button>
+          <CartDropdown
+            open={cartModalOpen}
+            onClose={onCloseCartModalHandler}
+          />
           <a href="#stepper" className="btn-primary scale-animation">
             Як це працює?
           </a>
