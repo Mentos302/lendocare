@@ -6,6 +6,7 @@ import { SvgBurger, SvgCareLogo, SvgCart, SvgLogo } from "../(svg)/AllSvg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
+import CartDropdown from "./CartDropdown";
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -70,12 +71,13 @@ export default function Example() {
           </Link>
         </div>
         <div className="hidden gap-4 lg:flex lg:flex-1 lg:justify-end">
-          <button className="px-6 py-3 border-2 border-primary-01 rounded-[48px] scale-animation">
+          {/* <button className="px-6 py-3 border-2 border-primary-01 rounded-[48px] scale-animation">
             <SvgCart />
-          </button>
-          <button className="btn-primary scale-animation">
-            Особистий кабінет
-          </button>
+          </button> */}
+          <CartDropdown />
+          <a href="#stepper" className="btn-primary scale-animation">
+            Як це працює?
+          </a>
         </div>
       </nav>
       <Transition appear show={mobileMenuOpen} as={Fragment}>
