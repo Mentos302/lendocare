@@ -1,17 +1,8 @@
-<<<<<<< HEAD
-import Footer from "./(components)/Footer";
-import Header from "./(components)/Header";
-import "./globals.css";
-import { Montserrat } from "next/font/google";
-
-const montserrat = Montserrat({ subsets: ["latin"] });
-=======
 import "./globals.css";
 import { Inter } from "next/font/google";
 import ReactQueryWrapper from "@/utils/queryClientProvider";
 
 const inter = Inter({ subsets: ["latin"] });
->>>>>>> feature/zustand-cart
 
 export const metadata = {
   title: "Create Next App",
@@ -25,15 +16,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-<<<<<<< HEAD
-      <body className={montserrat.className}>
-        <Header />
-        {children}
-        <Footer />
-=======
       <body className={inter.className}>
         <ReactQueryWrapper>{children}</ReactQueryWrapper>
->>>>>>> feature/zustand-cart
       </body>
     </html>
   );
