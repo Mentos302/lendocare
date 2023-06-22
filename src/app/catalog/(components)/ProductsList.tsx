@@ -1,12 +1,12 @@
-import { Product } from "@/app/types";
 import apiClient from "@/utils/http-common";
+import { Product } from "@/app/types";
 import { ALL_CATEGORIES } from "@/utils/static-categories";
 import { useQuery } from "@tanstack/react-query";
 
 async function getProducts(categories: number[]) {
   const res = await apiClient.post("enquiry", {
     productSubCategoryIds: categories.length ? categories : ALL_CATEGORIES,
-    countryCode: "UKR",
+    countryCode: process.env.NEXT_PUBLIC_COUNTRY_CODE,
   });
 
   return res.data;
