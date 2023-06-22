@@ -1,4 +1,4 @@
-import { Product } from "@/@types";
+import { Product } from "@/app/types";
 
 const REQUEST_SETTINGS = {
   method: "POST",
