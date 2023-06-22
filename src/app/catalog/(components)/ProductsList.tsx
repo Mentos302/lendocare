@@ -1,7 +1,7 @@
 import { Product } from "@/app/types";
 import apiClient from "@/utils/http-common";
+import { ALL_CATEGORIES } from "@/utils/static-categories";
 import { useQuery } from "@tanstack/react-query";
-import { ALL_CATEGORIES } from "../page";
 
 async function getProducts(categories: number[]) {
   const res = await apiClient.post("enquiry", {
@@ -23,7 +23,7 @@ export default function ProductsList({ categories }: { categories: number[] }) {
   return (
     <div>
       {data.map((product: Product) => (
-        <h3>{product.lendoProduct.name}</h3>
+        <h3 key={product.lendoProduct.name}>{product.lendoProduct.name}</h3>
       ))}
     </div>
   );

@@ -1,5 +1,5 @@
+import { ALL_CATEGORIES } from "@/utils/static-categories";
 import { ChangeEvent, Dispatch, SetStateAction } from "react";
-import { ALL_CATEGORIES } from "../page";
 
 type propTypes = { setCategories: Dispatch<SetStateAction<number[]>> };
 
