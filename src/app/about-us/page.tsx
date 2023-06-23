@@ -8,7 +8,7 @@ const AboutUs = () => {
   return (
     <div className="mb-20">
       <div className="bg-primary-04 mb-10">
-        <div className="relative mx-7 xl:mx-auto max-w-7xl h-[424px]">
+        <div className="container-box relative h-[424px]">
           <div className="text-primary-01 font-semibold text-4xl md:text-[80px] text-center pt-11 md:pt-28 lg:pr-14">
             Про нас
           </div>
@@ -20,7 +20,7 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
-      <div className="mx-auto px-7 max-w-7xl flex flex-col gap-10">
+      <div className="container-box flex flex-col gap-10">
         <div className="flex flex-col lg:flex-row gap-10 justify-between items-start">
           <div className="lg:w-[620px] flex flex-col gap-5">
             <div className="font-medium text-lg md:text-2xl">

@@ -6,7 +6,7 @@ import { SvgBurger, SvgCareLogo, SvgCart, SvgLogo } from "../(svg)/AllSvg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import classNames from "classnames";
-import CartDropdown from "./CartDropdown";
+import CartDropdown from "../cart/(components)/CartDropdown";
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -27,7 +27,7 @@ export default function Example() {
   return (
     <header className="mb-5 bg-white lg:mb-0">
       <nav
-        className="flex items-center justify-between pl-5 mx-auto max-w-7xl lg:px-8 lg:py-5"
+        className="flex items-center justify-between pl-7 mx-auto max-w-7xl lg:px-8 lg:py-5"
         aria-label="Global"
       >
         <div className="flex lg:flex-1">
@@ -35,7 +35,11 @@ export default function Example() {
             <SvgLogo />
           </a>
         </div>
+
         <div className="flex lg:hidden">
+          <Link href="/cart" className="px-6 py-3 scale-animation">
+            <SvgCart />
+          </Link>
           <button
             type="button"
             className="-mt-2.5 relative inline-flex items-center justify-center rounded-md pt-2.5 text-gray-700"
@@ -90,11 +94,12 @@ export default function Example() {
             open={cartModalOpen}
             onClose={onCloseCartModalHandler}
           />
-          <a href="#stepper" className="btn-primary scale-animation">
+          <a href="/#stepper" className="btn-primary scale-animation">
             Як це працює?
           </a>
         </div>
       </nav>
+
       <Transition appear show={mobileMenuOpen} as={Fragment}>
         <Dialog as="div" className="lg:hidden" onClose={onCloseNodalHandler}>
           <Transition.Child
@@ -174,7 +179,7 @@ export default function Example() {
                       Про нас
                     </Link>
                     <Link
-                      href="/about-us"
+                      href="/cart"
                       onClick={() => setMobileMenuOpen(false)}
                       className="block px-4 py-2 text-base font-semibold leading-7 rounded-lg scale-animation hover:bg-primary-02"
                     >

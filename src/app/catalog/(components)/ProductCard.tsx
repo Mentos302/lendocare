@@ -3,8 +3,8 @@
 import React, { FC } from "react";
 
 import Link from "next/link";
-import Prices from "./Prices";
 import Image from "next/image";
+import Prices from "./Prices";
 
 export interface ProductCardProps {
   className?: string;

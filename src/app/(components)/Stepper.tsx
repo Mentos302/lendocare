@@ -50,9 +50,12 @@ const Stepper = () => {
               </div>
               <div className="flex flex-col gap-6 md:gap-12 justify-between p-4 sm:py-6 sm:px-8">
                 <div className="text-gray-01">
-                  <div className="mb-3 text-base sm:text-xl font-semibold">
+                  <Link
+                    href="/catalog"
+                    className="mb-3 text-base sm:text-xl font-semibold"
+                  >
                     Оформіть замовлення
-                  </div>
+                  </Link>
                   <div className="text-sm sm:text-base font-medium">
                     Подивіться, яке обладнання доступне для прокату на ваші
                     дати.
