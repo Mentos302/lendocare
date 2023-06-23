@@ -5,11 +5,15 @@ import Link from "next/link";
 const Footer = () => {
   return (
     <footer className="bg-light-blue" aria-labelledby="footer-heading">
-      <div className="mx-auto max-w-7xl px-6 sm:pt-8 lg:pb-7 lg:pt-16">
+      <div className="container-box sm:pt-8 lg:pb-7 lg:pt-16">
         <div className="flex flex-col sm:flex-col-reverse lg:flex-row">
-          <div className="flex justify-center lg:justify-start my-5 lg:my-0">
+          <a
+            href="/"
+            className="flex justify-center lg:justify-start my-5 lg:my-0"
+          >
             <SvgLogo />
-          </div>
+          </a>
+
           <div className="w-full flex flex-col sm:flex-row justify-center gap-5 sm:gap-0 items-center sm:items-start sm:justify-around text-center sm:text-start">
             <div>
               <h3 className="mb-5 sm:mb-8 text-lg font-semibold text-gray-01">

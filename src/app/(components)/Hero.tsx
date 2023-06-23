@@ -3,6 +3,7 @@ import hero from "../../../public/images/hero.png";
 import heroMobile from "../../../public/images/hero-mobile.png";
 import Image from "next/image";
 import { SvgHeroArrow } from "../(svg)/AllSvg";
+import Link from "next/link";
 
 const Hero = () => {
   return (
@@ -27,7 +28,9 @@ const Hero = () => {
               використання вдома через оренду.
             </div>
             <div className="sm:pt-4 space-x-4 sm:space-x-6">
-              <button className="btn-primary">Каталог</button>
+              <Link href="/catalog" className="btn-primary">
+                Каталог
+              </Link>
               <a href="#stepper" className="btn-outline">
                 Детальніше
               </a>
