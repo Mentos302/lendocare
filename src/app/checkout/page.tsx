@@ -1,7 +1,7 @@
 "use client";
 
 import { useYupValidationResolver } from "@/utils/useYupValidationResolver";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Disclosure as HeadlessDisclosure } from "@headlessui/react";
 import * as yup from "yup";
@@ -21,7 +21,7 @@ import Link from "next/link";
 import Disclosure from "../(components)/Disclosure";
 import { useRouter } from "next/navigation";
 
-const App = () => {
+const Checkout = () => {
   const router = useRouter();
 
   const [deliveryByCourier, setDeliveryByCourier] = useState(false);
@@ -112,10 +112,12 @@ const App = () => {
     router.push("/");
   };
 
-  if (errors) {
-    const element = document.getElementById("order");
-    element?.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+  useEffect(() => {
+    if (errors) {
+      const element = document.getElementById("order");
+      element?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [errors]);
 
   return (
     <div className="container-box">
@@ -443,4 +445,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Checkout;
