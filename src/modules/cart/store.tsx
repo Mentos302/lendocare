@@ -4,10 +4,18 @@ import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
 import { CartItem, CartState, initialStateType } from "./interfaces";
 
+const MOCK_CART = [
+  {
+    lendoProductId: 1234,
+    quantity: 1,
+    deliveryType: "delivery_fee",
+    fromDate: new Date(),
+    toDate: new Date(),
+  },
+];
+
 const initialState: initialStateType = {
-  cart: [],
-  fromDate: null,
-  toDate: null,
+  cart: MOCK_CART,
 };
 
 export const useCartStore = create<CartState>()(
@@ -16,7 +24,10 @@ export const useCartStore = create<CartState>()(
       ...initialState,
       addToCart: (product: CartItem) =>
         set((state) => {
-          state.cart.push({ ...product, quantity: 1 });
+          state.cart.push({
+            ...product,
+            quantity: 1,
+          });
         }),
       removeFromCart: (productId: number) =>
         set((state) => {

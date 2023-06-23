@@ -1,8 +1,11 @@
 "use client";
 
 import { useForm } from "react-hook-form";
+import { useCheckout } from "./(model)/useCheckout";
 
 const CheckoutPage = () => {
+  useCheckout();
+
   const {
     register,
     handleSubmit,
