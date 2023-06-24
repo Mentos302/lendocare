@@ -14,7 +14,7 @@ export default function Catalog() {
   return (
     <div className="container-box py-16 ">
       <div>
-        <div className="space-y-6">
+        <div className="space-y-3 md:space-y-6">
           {/* HEADING */}
           <div className="max-w-screen-sm">
             <div className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">

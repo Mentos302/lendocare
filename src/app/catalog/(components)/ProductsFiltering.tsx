@@ -35,8 +35,8 @@ const ProductsFiltering: FC<ProductsFilteringProps> = (props) => {
   };
 
   return (
-    <div className="space-y-6">
-      <Disclosure className="py-6 px-6" title="Категорії">
+    <div className="space-y-3 md:space-y-6">
+      <Disclosure className="py-3 md:py-6 px-3 md:px-6" title="Категорії">
         <label
           className={classNames(
             "flex gap-3 items-center cursor-pointer text-gray-01 text-sm font-medium",
@@ -70,7 +70,7 @@ const ProductsFiltering: FC<ProductsFilteringProps> = (props) => {
           Роллатори
         </label>
       </Disclosure>
-      <Disclosure className="py-6 px-6" title="Сортування">
+      <Disclosure className="py-3 md:py-6 px-3 md:px-6" title="Сортування">
         <label
           className={classNames(
             "flex gap-3 items-center cursor-pointer text-gray-01 text-sm font-medium"
