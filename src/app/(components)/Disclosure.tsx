@@ -11,6 +11,7 @@ type DisclosuresProps = PropsWithChildren<{
   icon?: React.ComponentType<React.SVGProps<SVGSVGElement>> | undefined;
   subTitle?: string | undefined;
   defaultClosed?: boolean;
+  className?: string;
   error?: boolean;
 }>;
 
@@ -22,10 +23,16 @@ const Disclosure: FC<DisclosuresProps> = (props) => {
     subTitle = "",
     defaultClosed = false,
     error = false,
+    className = "",
   } = props;
 
   return (
-    <div className="px-2 sm:px-6 py-10 border border-light-gray rounded-lg">
+    <div
+      className={classNames(
+        "px-2 sm:px-6 py-10 border border-light-gray rounded-lg",
+        className
+      )}
+    >
       <HeadlessDisclosure defaultOpen={defaultClosed}>
         {({ open }) => (
           <>
@@ -47,8 +54,8 @@ const Disclosure: FC<DisclosuresProps> = (props) => {
               </div>
 
               <SvgDropdownArrow
-                className={classNames("text-primary-01 h-2 w-3", {
-                  "text-gray-01 rotate-180 transform": !open,
+                className={classNames("text-gray-01 h-2 w-3", {
+                  "text-primary-01  rotate-180 transform": !open,
                   "text-red-500": error,
                 })}
               />
