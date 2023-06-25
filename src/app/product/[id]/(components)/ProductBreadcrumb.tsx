@@ -13,7 +13,7 @@ export const ProductBreadcrumb = ({ product }: propTypes) => {
     },
     {
       label: subCategory.name,
-      path: "/catalog/" + subCategory.id,
+      path: "/catalog?cat=" + subCategory.id,
     },
     {
       label: name,
