@@ -1,5 +1,5 @@
 import apiClient from "@/utils/http-common";
-import { Product } from "@/app/types";
+import { Product, ProductResponse } from "@/app/types";
 import { ALL_CATEGORIES } from "@/utils/static-categories";
 import { useQuery } from "@tanstack/react-query";
 import { SvgAddToCart, SvgLike, SvgWatch } from "@/app/(svg)/AllSvg";
@@ -19,7 +19,7 @@ async function getProducts(categories: number[]) {
 }
 
 const ProductsList = ({ categories }: { categories: number[] }) => {
-  const { data, isLoading, error } = useQuery(["products", categories], () =>
+  const { data, isLoading, error } = useQuery<ProductResponse[]>(["products", categories], () =>
     getProducts(categories)
   );
 
@@ -37,15 +37,16 @@ const ProductsList = ({ categories }: { categories: number[] }) => {
     <ProductSkeleton key={index} />
   ));
 
+  if(data)
   return (
     <div className="flex flex-wrap gap-6 justify-center lg:justify-start">
       {isLoading
         ? skeletons
-        : data.map((product: Product) => (
+        : data.map((product: ProductResponse) => (
             <Link
               className="w-[290px] flex flex-col border border-light-gray rounded-lg mb-6"
               key={product.lendoProduct.name}
-              href={`/product/ ${product.lendoProduct}`}
+              href={`/product/ ${product}`}
             >
               <div className="!h-[300px] mb-4 actions">
                 <div className="imagesWrapper rounded-lg">
