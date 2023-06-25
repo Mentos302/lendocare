@@ -3,8 +3,6 @@
 import { useState } from "react";
 import ProductsFiltering from "./(components)/ProductsFiltering";
 import ProductsList from "./(components)/ProductsList";
-import SidebarFilters from "./(components)/SidebarFilters";
-import ProductCard from "./(components)/ProductCard";
 import { products } from "../(constants)/mockProducts";
 import { SvgCatalogDude } from "../(svg)/AllSvg";
 import { useSearchParams } from "next/navigation";
