@@ -7,7 +7,7 @@ import FAQ from "./(components)/FAQ";
 
 const Home = () => {
   return (
-    <main className="lg:mt-10 ">
+    <main className="lg:mt-10">
       <Hero />
       <Stepper />
       <PopularProducts />
