@@ -1,0 +1,230 @@
+"use client";
+
+import Disclosure from "@/app/(components)/Disclosure";
+import { Disclosure as HeadlessDisclosure } from "@headlessui/react";
+import { Dropdown } from "@/app/(components)/Dropdown";
+import { Field } from "@/app/(components)/Field";
+import { novaPostBranches } from "@/app/(constants)/dropdownOptions";
+import { SvgShipping } from "@/app/(svg)/AllSvg";
+import { createDropdownOptions } from "@/utils/createDropdownOptions";
+import { useYupValidationResolver } from "@/utils/useYupValidationResolver";
+import classNames from "classnames";
+import { FC, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import * as yup from "yup";
+
+type ShippingFormProps = {
+  formData: FormData;
+  setFormStep: (val: number) => void;
+};
+
+export const ShippingForm: FC<ShippingFormProps> = (props) => {
+  const { formData, setFormStep } = props;
+
+  const [deliveryByCourier, setDeliveryByCourier] = useState(false);
+  const [deliveryToBranch, setDeliveryToBranch] = useState(false);
+
+  const checkboxValidationStatus = deliveryByCourier || deliveryByCourier;
+
+  const options = createDropdownOptions(novaPostBranches);
+
+  const schema = yup.object().shape({
+    ...(deliveryByCourier
+      ? {
+          city: yup.string().required("Вкажіть ваше місто"),
+          street: yup.string().required("Вкажіть вашу вулицю"),
+          building: yup.string().required("Вкажіть ваш будинок"),
+          apartment: yup.string().required("Вкажіть вашу квартиру"),
+        }
+      : {}),
+    ...(deliveryToBranch
+      ? {
+          branch: yup.string().required("Вкажіть номер відділення"),
+        }
+      : {}),
+    checkbox: yup.array().min(1).of(yup.string().required()).required(),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    unregister,
+    control,
+    formState: { errors, isValid, isDirty },
+  } = useForm({
+    resolver: useYupValidationResolver(schema),
+  });
+
+  const handleDeliveryByCourierChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setDeliveryByCourier(e.target.checked);
+    if (e.target.checked) {
+      setDeliveryToBranch(false);
+    } else {
+      reset({
+        city: "",
+        street: "",
+        building: "",
+        apartment: "",
+      });
+      unregister("city");
+      unregister("street");
+      unregister("building");
+      unregister("apartment");
+    }
+  };
+
+  const handleDeliveryToBranchChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setDeliveryToBranch(e.target.checked);
+    if (e.target.checked) {
+      setDeliveryByCourier(false);
+    } else {
+      reset({
+        branch: "",
+      });
+      unregister("branch");
+    }
+  };
+
+  const onSubmit = (data: any) => {
+    if (deliveryByCourier) {
+      if ("city" in data && data?.city) formData.append("city", data?.city);
+      if ("street" in data && data?.street)
+        formData.append("street", data?.street);
+      if ("building" in data && data?.building)
+        formData.append("building", data?.building);
+      if ("apartment" in data && data?.apartment)
+        formData.append("apartment", data?.apartment);
+    }
+    console.log("xxx", data);
+    setFormStep(2);
+  };
+
+  return (
+    <form id="orderForm" onSubmit={handleSubmit(onSubmit)}>
+      <Disclosure title="ДОСТАВКA" icon={SvgShipping}>
+        <div className="flex my-4 gap-5 items-center">
+          <div>
+            <label
+              className={classNames(
+                "flex gap-3 items-center cursor-pointer text-gray-01 text-sm sm:text-base",
+                {
+                  "text-primary-01": deliveryByCourier,
+                  "text-red-500": errors.checkbox,
+                }
+              )}
+            >
+              Доставка кур&apos;єром
+              <input
+                className="h-4 w-4 text-sm sm:text-base cursor-pointer accent-primary-01 focus:ring-0 focus:ring-offset-0"
+                type="checkbox"
+                id="checkbox"
+                {...register("checkbox")}
+                checked={deliveryByCourier}
+                onChange={handleDeliveryByCourierChange}
+              />
+            </label>
+          </div>
+          <div>
+            <label
+              className={classNames(
+                "flex gap-3 items-center cursor-pointer text-gray-01 text-sm sm:text-base",
+                {
+                  "text-primary-01": deliveryToBranch,
+                  "text-red-500": errors.checkbox,
+                }
+              )}
+            >
+              Доставка на відділення
+              <input
+                className="h-4 w-4 text-sm sm:text-base cursor-pointer accent-primary-01 focus:ring-0 focus:ring-offset-0"
+                type="checkbox"
+                id="checkbox"
+                {...register("checkbox")}
+                checked={deliveryToBranch}
+                onChange={handleDeliveryToBranchChange}
+              />
+            </label>
+          </div>
+        </div>
+        {deliveryByCourier && (
+          <>
+            <Field
+              id="city"
+              {...register("city")}
+              error={errors.city}
+              labelError={Boolean(errors.city)}
+              label="Ваше місто"
+              placeholder="Вкажіть ваше місто"
+            />
+            <Field
+              id="street"
+              {...register("street")}
+              error={errors.street}
+              labelError={Boolean(errors.street)}
+              label="Ваша вулиця"
+              placeholder="Введіть вашу вулицю"
+            />
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between items-start">
+              <Field
+                id="building"
+                {...register("building")}
+                error={errors.building}
+                labelError={Boolean(errors.building)}
+                label="Ваш будинок"
+                placeholder="Вкажіть ваш будинок"
+              />
+              <Field
+                id="apartment"
+                {...register("apartment")}
+                error={errors.apartment}
+                labelError={Boolean(errors.apartment)}
+                label="Ваша вулиця"
+                placeholder="Вкажіть вашу квартиру"
+              />
+            </div>
+          </>
+        )}
+        {deliveryToBranch && (
+          <Controller
+            control={control}
+            name="branch"
+            render={({ field: { onChange } }) => (
+              <div className="w-[312px]">
+                <div>
+                  <Dropdown
+                    options={options}
+                    placeholder="Оберіть ваше відділення"
+                    error={errors.branch}
+                    onChange={onChange}
+                  />
+                </div>
+              </div>
+            )}
+          />
+        )}
+
+        {errors.checkbox && (
+          <div className="text-red-500">Оберіть спосіб доставки</div>
+        )}
+
+        {!isValid || !isDirty ? (
+          <button className="w-fit mt-4 text-base py-3 btn-primary">
+            Підтвердити адрес
+          </button>
+        ) : (
+          <HeadlessDisclosure.Button
+            type="submit"
+            className="w-fit mt-4 text-base py-3 btn-primary"
+          >
+            Підтвердити адрес
+          </HeadlessDisclosure.Button>
+        )}
+      </Disclosure>
+    </form>
+  );
+};

@@ -1,7 +1,7 @@
 "use client";
 
 import { useYupValidationResolver } from "@/utils/useYupValidationResolver";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Disclosure as HeadlessDisclosure } from "@headlessui/react";
 import * as yup from "yup";
@@ -17,107 +17,34 @@ import {
   SvgPersonalInfo,
   SvgShipping,
 } from "../(svg)/AllSvg";
-import Link from "next/link";
 import Disclosure from "../(components)/Disclosure";
-import { useRouter } from "next/navigation";
+import ContactInfoForm from "./(components)/ContactInfoForm";
+import { ShippingForm } from "./(components)/ShippingForm";
 
 const Checkout = () => {
-  const router = useRouter();
+  const [formStep, setFormStep] = useState(0);
+  const ref = useRef(new FormData());
+  const formData = ref.current;
 
-  const [deliveryByCourier, setDeliveryByCourier] = useState(false);
-  const [deliveryToBranch, setDeliveryToBranch] = useState(false);
+  // const personalInfoErrors = Boolean(
+  //   errors.firstName || errors.lastName || errors.phoneNumber
+  // );
 
-  const options = createDropdownOptions(novaPostBranches);
+  // const shipppingErrors = Boolean(
+  //   errors.branch ||
+  //     errors.city ||
+  //     errors.street ||
+  //     errors.checkbox ||
+  //     errors.building ||
+  //     errors.apartment
+  // );
 
-  const schema = yup.object().shape({
-    firstName: yup.string().required("Введіть ваше ім'я"),
-    lastName: yup.string().required("Введіть ваше прізвище"),
-    phoneNumber: yup.string().required("Введіть ваш номер телефону"),
-    ...(deliveryByCourier
-      ? {
-          city: yup.string().required("Вкажіть ваше місто"),
-          street: yup.string().required("Вкажіть вашу вулицю"),
-          building: yup.string().required("Вкажіть ваш будинок"),
-          apartment: yup.string().required("Вкажіть вашу квартиру"),
-        }
-      : {}),
-    ...(deliveryToBranch
-      ? {
-          branch: yup.string().required("Вкажіть номер відділення"),
-        }
-      : {}),
-    checkbox: yup.array().min(1),
-  });
-
-  const {
-    register,
-    handleSubmit,
-    reset,
-    unregister,
-    control,
-    formState: { errors },
-  } = useForm({
-    resolver: useYupValidationResolver(schema),
-  });
-
-  const personalInfoErrors = Boolean(
-    errors.firstName || errors.lastName || errors.phoneNumber
-  );
-
-  const shipppingErrors = Boolean(
-    errors.branch ||
-      errors.city ||
-      errors.street ||
-      errors.checkbox ||
-      errors.building ||
-      errors.apartment
-  );
-
-  const handleDeliveryByCourierChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setDeliveryByCourier(e.target.checked);
-    if (e.target.checked) {
-      setDeliveryToBranch(false);
-    } else {
-      reset({
-        city: "",
-        street: "",
-        building: "",
-        apartment: "",
-      });
-      unregister("city");
-      unregister("street");
-      unregister("building");
-      unregister("apartment");
-    }
-  };
-
-  const handleDeliveryToBranchChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setDeliveryToBranch(e.target.checked);
-    if (e.target.checked) {
-      setDeliveryByCourier(false);
-    } else {
-      reset({
-        branch: "",
-      });
-      unregister("branch");
-    }
-  };
-
-  const onSubmit = (data: any) => {
-    console.log(data);
-    router.push("/");
-  };
-
-  useEffect(() => {
-    if (errors) {
-      const element = document.getElementById("order");
-      element?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  }, [errors]);
+  // useEffect(() => {
+  //   if (errors) {
+  //     const element = document.getElementById("order");
+  //     element?.scrollIntoView({ behavior: "smooth", block: "start" });
+  //   }
+  // }, [errors]);
 
   return (
     <div className="container-box">
@@ -129,12 +56,7 @@ const Checkout = () => {
       </div>
       <div className=" mb-10 flex flex-col lg:flex-row">
         <div className="lg:w-[60%]">
-          <form
-            id="orderForm"
-            className="flex flex-col gap-6"
-            onSubmit={handleSubmit(onSubmit)}
-          >
-            <Disclosure
+          {/* <Disclosure
               error={personalInfoErrors}
               title="КОНТАКТНА ІНФОРМАЦІЯ"
               icon={SvgPersonalInfo}
@@ -172,8 +94,10 @@ const Checkout = () => {
               >
                 Підтвердити інформацію
               </HeadlessDisclosure.Button>
-            </Disclosure>
-
+            </Disclosure> */}
+          <ContactInfoForm formData={formData} setFormStep={setFormStep} />
+          <ShippingForm formData={formData} setFormStep={setFormStep} />
+          {/* <form id="orderForm" onSubmit={handleSubmit(onSubmit)}>
             <Disclosure
               error={shipppingErrors}
               title="ДОСТАВКA"
@@ -287,7 +211,7 @@ const Checkout = () => {
                 Підтвердити адрес
               </HeadlessDisclosure.Button>
             </Disclosure>
-          </form>
+          </form> */}
         </div>
         <div className="hidden lg:block mx-8 border-r border-r-light-gray" />
         <div className="lg:w-[40%]">
