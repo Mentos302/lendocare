@@ -67,88 +67,33 @@ const ProductInfo = ({ product }: propTypes) => {
             </Tab>
             {/* <div className="absolute bottom-0 w-full border-b-4" /> */}
           </Tab.List>
-
           <Tab.Panels>
             <Tab.Panel>
-              <>
+              <div className="p-7 rounded-lg bg-white">
                 <b className="block text-bold text-2xl mb-5">Опис</b>
                 <div className="text-bold text-base sm:text-lg">
                   {parse(product.description)}
                 </div>
-              </>
+              </div>
             </Tab.Panel>
             <Tab.Panel>
-              <>
+              <div className="p-7 rounded-lg bg-white">
                 <b className="block text-bold text-2xl mb-5">Характеристики</b>
                 <div className="text-bold text-base sm:text-lg">
                   {parse(product.description)}
                 </div>
-              </>
+              </div>
             </Tab.Panel>
             <Tab.Panel>
-              <>
+              <div className="p-7 rounded-lg bg-white">
                 <b className="block text-bold text-2xl mb-5">Доставка</b>
                 <div className="text-bold text-base sm:text-lg">
                   {parse(product.description)}
                 </div>
-              </>
+              </div>
             </Tab.Panel>
           </Tab.Panels>
         </Tab.Group>
-
-        {/* <div className="mb-6 flex text-gray-05">
-          <button
-            className="pb-3 px-8 border-b-4 font-semibold text-primary-01 border-primary-01"
-            onClick={() => setActiveTab("description")}
-          >
-            Опис
-          </button>
-          <button
-            className="pb-3 px-8 border-b-4 border-gray-300"
-            onClick={() => setActiveTab("specs")}
-          >
-            Характеристики
-          </button>
-          <button
-            className="pb-3 px-8 border-b-4 border-gray-300"
-            onClick={() => setActiveTab("delivery")}
-          >
-            Доставка
-          </button>
-          <div className="w-full border-b-4 border-gray-300"></div>
-        </div>
-        <div className="px-6 py-7 rounded-lg bg-white">
-          {activeTab === "description" ? (
-            <>
-              <b className="block text-bold text-2xl mb-5">Опис</b>
-              <div className="text-bold text-lg">
-                {parse(product.description)}
-              </div>
-            </>
-          ) : (
-            ""
-          )}
-          {activeTab === "specs" ? (
-            <>
-              <b className="block text-bold text-2xl mb-5">Характеристики</b>
-              <div className="text-bold text-lg">
-                {parse(product.description)}
-              </div>
-            </>
-          ) : (
-            ""
-          )}
-          {activeTab === "delivery" ? (
-            <>
-              <b className="block text-bold text-2xl mb-5">Доставка</b>
-              <div className="text-bold text-lg">
-                {parse(product.description)}
-              </div>
-            </>
-          ) : (
-            ""
-          )}
-        </div> */}
       </div>
     </section>
   );
