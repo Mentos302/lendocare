@@ -24,8 +24,13 @@ const ProductGallery = ({ product }: propTypes) => {
           <img src={thumbnail} className="w-full rounded-2xl" />
         </a>
         <div className="flex gap-5 px-3">
-          {photos.map((photo) => (
-            <a data-fancybox="gallery" href={photo} className="block mb-3">
+          {photos.map((photo, i) => (
+            <a
+              data-fancybox="gallery"
+              href={photo}
+              className="block mb-3"
+              key={i}
+            >
               <img src={photo} className="w-full rounded-2xl" />
             </a>
           ))}

@@ -1,6 +1,5 @@
 "use client";
 
-<<<<<<< HEAD
 import { useYupValidationResolver } from "@/utils/useYupValidationResolver";
 import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -50,14 +49,6 @@ const Checkout = () => {
     checkbox: yup.array().min(1),
   });
 
-=======
-import { useForm } from "react-hook-form";
-import { useCheckout } from "./(model)/useCheckout";
-
-const CheckoutPage = () => {
-  useCheckout();
-
->>>>>>> feature/product-page
   const {
     register,
     handleSubmit,
