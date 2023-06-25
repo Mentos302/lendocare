@@ -99,15 +99,15 @@ const ProductsList = ({ categories }: { categories: number[] }) => {
                 <div className="mb-4 text-gray-01 font-semibold text-lg lg:text-xl">
                   {product.lendoProduct.name}
                 </div>
-                <div className="flex justify-end h-full pb-5 flex-col">
-                  <div
-                    className="text-sm"
-                    dangerouslySetInnerHTML={{
-                      __html: getFirstSentence(
-                        product.lendoProduct.description
-                      ),
-                    }}
-                  />
+                <div className="min-h-[120px] flex justify-end h-full flex-col justify-between">
+                  <div className="text-sm">
+                    {getFirstSentence(
+                      product.lendoProduct.description.replace(
+                        /<\/?[^>]+(>|$)/g,
+                        ""
+                      )
+                    )}
+                  </div>
                   <div className="p-1 text-center border-2 border-primary-01 rounded-lg text-primary-01 font-semibold text-lg scale-animation">
                     Від 200₴ / тиждень
                   </div>

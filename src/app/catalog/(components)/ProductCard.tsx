@@ -26,7 +26,6 @@ const ProductCard: FC<ProductCardProps> = ({
         data-nc-id="ProductCard"
       >
         <Link href="#" className="absolute inset-0"></Link>
-
         <div className="relative flex-shrink-0 bg-slate-50 dark:bg-slate-300 rounded-3xl overflow-hidden z-1 group">
           <Link href="#" className="block">
             <Image src={image} alt={name} height={275} width={300} />

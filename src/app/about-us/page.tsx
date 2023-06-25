@@ -21,7 +21,7 @@ const AboutUs = () => {
         </div>
       </div>
       <div className="container-box flex flex-col gap-10">
-        <div className="flex flex-col lg:flex-row gap-10 justify-between items-start">
+        <div className="flex flex-col lg:flex-row gap-20 justify-between items-center">
           <div className="lg:w-[620px] flex flex-col gap-5">
             <div className="font-medium text-lg md:text-2xl">
               Ми є частиною <span className="text-primary-01">Lendo</span>{" "}
@@ -43,7 +43,7 @@ const AboutUs = () => {
           </div>
           <div className="relative max-w-[628px] mx-auto lg:mx-0 max-h-[628px] lg:w-[628px] lg:h-[628px]">
             <Image src={founders} alt="Founders" />
-            <div className="mt-1 text-gray-01 font-medium text-center text-xs md:text-base">
+            <div className="mt-1 text-gray-01 font-medium text-end text-xs md:text-base">
               Соломія та Роман - засновники LendoCare
             </div>
           </div>
