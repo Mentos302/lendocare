@@ -22,6 +22,7 @@ export type Product = {
     measurement: string;
   };
   pricePlan: Pricing;
+  lendoProductId: number;
 };
 
 export type Pricing = {
