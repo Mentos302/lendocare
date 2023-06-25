@@ -7,9 +7,14 @@ import SidebarFilters from "./(components)/SidebarFilters";
 import ProductCard from "./(components)/ProductCard";
 import { products } from "../(constants)/mockProducts";
 import { SvgCatalogDude } from "../(svg)/AllSvg";
+import { useSearchParams } from "next/navigation";
 
 export default function Catalog() {
-  const [categories, setCategories] = useState<number[]>([]);
+  const searchParams = useSearchParams();
+  const category = searchParams.get("cat");
+  const initialState = category ? [parseFloat(category)] : [];
+
+  const [categories, setCategories] = useState<number[]>(initialState);
 
   return (
     <div className="container-box py-16 ">
@@ -27,7 +32,10 @@ export default function Catalog() {
             <div className="flex flex-col lg:flex-row">
               <div className="w-full min-w-[220px] lg:w-[20%] space-y-6">
                 {/* <SidebarFilters /> */}
-                <ProductsFiltering setCategories={setCategories} />
+                <ProductsFiltering
+                  preselected={initialState[0]}
+                  setCategories={setCategories}
+                />
                 <div className="hidden lg:block">
                   <SvgCatalogDude />
                 </div>

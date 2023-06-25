@@ -4,12 +4,13 @@ import classNames from "classnames";
 import { ChangeEvent, Dispatch, FC, SetStateAction, useState } from "react";
 
 type ProductsFilteringProps = {
+  preselected: number;
   setCategories: Dispatch<SetStateAction<number[]>>;
 };
 
 const ProductsFiltering: FC<ProductsFilteringProps> = (props) => {
-  const { setCategories } = props;
-  const [checkedItems, setCheckedItems] = useState<number[]>([]);
+  const { preselected, setCategories } = props;
+  const [checkedItems, setCheckedItems] = useState<number[]>([preselected]);
 
   const selectCategory = ({ target }: ChangeEvent<HTMLInputElement>) => {
     const id = parseFloat(target.id);
@@ -50,6 +51,7 @@ const ProductsFiltering: FC<ProductsFilteringProps> = (props) => {
             type="checkbox"
             id="153"
             onChange={selectCategory}
+            defaultChecked={checkedItems.includes(153)}
           />
           Коляски
         </label>
@@ -66,6 +68,7 @@ const ProductsFiltering: FC<ProductsFilteringProps> = (props) => {
             type="checkbox"
             id="154"
             onChange={selectCategory}
+            defaultChecked={checkedItems.includes(154)}
           />
           Роллатори
         </label>

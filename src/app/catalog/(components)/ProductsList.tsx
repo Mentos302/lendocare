@@ -45,7 +45,7 @@ const ProductsList = ({ categories }: { categories: number[] }) => {
             <Link
               className="w-[290px] flex flex-col border border-light-gray rounded-lg mb-6"
               key={product.lendoProduct.name}
-              href="/checkout"
+              href={`/product/ ${product.lendoProduct}`}
             >
               <div className="!h-[300px] mb-4 actions">
                 <div className="imagesWrapper rounded-lg">

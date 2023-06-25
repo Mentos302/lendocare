@@ -9,7 +9,7 @@ const FAQ = () => {
     <div className="py-10 lg:py-16">
       <div className="container-box">
         <div>
-          <div className="mb-14 text-xl sm:text-3xl text-gray-01 font-semibold">
+          <div className="mb-14 text-3xl text-gray-01 font-semibold">
             Найчастіше питання?
           </div>
           <div className="flex gap-14 items-start">

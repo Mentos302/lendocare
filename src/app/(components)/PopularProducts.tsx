@@ -1,5 +1,6 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 
 const PopularProducts = () => {
   return (
@@ -15,10 +16,20 @@ const PopularProducts = () => {
         </div>
         <div className="flex flex-wrap justify-center gap-4 md:gap-6">
           <Link
-            href="/catalog"
-            className="w-[286px] border border-gray-04 rounded-2xl scale-animation"
+            href="/catalog?cat=153"
+            className="w-[286px] border border-gray-04 rounded-2xl scale-animation p-y4"
           >
-            <div className="bg-gray-400 h-[200px] rounded-t-2xl"></div>
+            <div
+              className="relative p-4"
+              style={{ height: "220px", width: "100%" }}
+            >
+              <Image
+                src="/images/wheelchair.jpg"
+                fill
+                style={{ objectFit: "contain" }}
+                alt="Інвалідний візок"
+              />
+            </div>
             <div className="p-6 text-gray-01">
               <div className="mb-3 text-base sm:text-lg font-semibold">
                 Інвалідні візки
@@ -29,46 +40,75 @@ const PopularProducts = () => {
             </div>
           </Link>
           <Link
-            href="/catalog"
-            className="w-[286px] border border-gray-04 rounded-2xl scale-animation"
+            href="/catalog?cat=153"
+            className="w-[286px] border border-gray-04 rounded-2xl scale-animation overflow-hidden"
           >
-            <div className="bg-gray-400 h-[200px] rounded-t-2xl"></div>
+            <div
+              className="relative p-4"
+              style={{ height: "220px", width: "100%" }}
+            >
+              <Image
+                src="/images/wheelleg.png"
+                fill
+                style={{ objectFit: "contain" }}
+                alt="Інвалідний візок"
+              />
+            </div>
+
             <div className="p-6 text-gray-01">
               <div className="mb-3 text-base sm:text-lg font-semibold">
-                Інвалідні візки з опорою для правої ноги
+                Інвалідні візки з опорою для ноги
               </div>
               <div className="text-sm sm:text-base font-medium">
-                Пропонуємо в оренду/прокат інвалідні візки з опорою для.
+                Пропонуємо в оренду/прокат інвалідні візки з опорою для ноги.
               </div>
             </div>
           </Link>
           <Link
-            href="/catalog"
+            href="/catalog?cat=154"
             className="w-[286px] border border-gray-04 rounded-2xl scale-animation"
           >
-            <div className="bg-gray-400 h-[200px] rounded-t-2xl"></div>
+            <div
+              className="relative p-4"
+              style={{ height: "220px", width: "100%" }}
+            >
+              <Image
+                src="/images/rollator.png"
+                fill
+                style={{ objectFit: "contain" }}
+                alt="Інвалідний візок"
+              />
+            </div>
             <div className="p-6 text-gray-01">
               <div className="mb-3 text-base sm:text-lg font-semibold">
-                Оренда роллаторів
+                Ролатори
               </div>
               <div className="text-sm sm:text-base font-medium">
-                We empower you to decide the domestic care you receive and how
-                it is delivered.
+                Пропонуємо в оренду/прокат ролатори та ходулі.
               </div>
             </div>
           </Link>
           <Link
-            href="/catalog"
+            href="/catalog?cat=154"
             className="w-[286px] border border-gray-04 rounded-2xl scale-animation"
           >
-            <div className="bg-gray-400 h-[200px] rounded-t-2xl"></div>
+            <div
+              className="relative p-4"
+              style={{ height: "220px", width: "100%" }}
+            >
+              <Image
+                src="/images/rollator21.png"
+                fill
+                style={{ objectFit: "contain" }}
+                alt="Інвалідний візок"
+              />
+            </div>
             <div className="p-6 text-gray-01">
               <div className="mb-3 text-base sm:text-lg font-semibold">
                 2 в 1 Роллатор-візок
               </div>
               <div className="text-sm sm:text-base font-medium">
-                We empower you to decide the domestic care you receive and how
-                it is delivered.
+                Пропонуємо в оренду/прокат ролатор-візок 2 в 1 .
               </div>
             </div>
           </Link>
