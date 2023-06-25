@@ -16,21 +16,21 @@ const ProductMain = ({ product }: propTypes) => {
   ) as string[];
 
   return (
-    <section className="pb-20">
-      <div className="container-box flex flex-col items-start lg:gap-12 lg:flex-row lg:gap-8">
+    <section className="pb-10 xl:pb-20">
+      <div className="container-box flex flex-col items-start gap-6 lg:flex-row lg:gap-8">
         <ProductGallery product={product} />
         <Sticky
           enabled={photos.length === 1}
           top={50}
           bottomBoundary={1380}
-          className="lg:min-w-[580px]"
+          className="mx-auto lg:w-[500px] xl:min-w-[580px]"
         >
           <>
             <ProductBreadcrumb product={product} />
-            <h1 className="font-semibold text-4xl leading-12 sm:text-[50px] text-gray-01 mb-4">
+            <h1 className="font-semibold text-2xl md:text-4xl leading-12 xl:text-[50px] text-gray-01 mb-4">
               {product.name}
             </h1>
-            <p className="text-base text-gray-05 mb-5">
+            <p className="text-sm sm:text-base text-gray-05 mb-5">
               Легкий алюмінієвий самохідний інвалідний візок Drive 18
             </p>
             <Specifications />

@@ -12,7 +12,7 @@ const ProductGallery = ({ product }: propTypes) => {
   ) as string[];
 
   return (
-    <div className="lg:min-w-[625px]">
+    <div className="mx-auto lg:w-[625px]">
       <Fancybox
         options={{
           Carousel: {
