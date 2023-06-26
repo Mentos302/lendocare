@@ -4,7 +4,7 @@ import { Dialog, Popover, Transition } from "@headlessui/react";
 import React, { FC, Fragment } from "react";
 import { SvgCart, SvgDateFinish, SvgDateStart } from "../../(svg)/AllSvg";
 import Link from "next/link";
-import Prices from "@/app/catalog/(components)/Prices";
+import EmptyCart from "./EmptyCart";
 
 type CartDropdownProps = {
   open: boolean;
@@ -32,7 +32,7 @@ const CartDropdown: FC<CartDropdownProps> = (props) => {
               leaveFrom="opacity-100 translate-y-1"
               leaveTo="opacity-0 translate-y-o"
             >
-              <Dialog.Panel className="hidden md:block absolute z-10 w-screen max-w-xs sm:max-w-md px-4 mt-3.5 top-[70px] right-[95px]">
+              <Dialog.Panel className="hidden md:block absolute z-50 w-screen max-w-xs sm:max-w-md px-4 mt-3.5 top-[70px] right-[95px]">
                 <div className="overflow-hidden rounded-2xl shadow-lg border border-light-gray">
                   <div className="relative bg-white">
                     <div className="max-h-[60vh] p-5 overflow-y-auto hiddenScrollbar">
@@ -48,7 +48,9 @@ const CartDropdown: FC<CartDropdownProps> = (props) => {
                             <div className="font-semibold">
                               Rey Nylon Backpack
                             </div>
-                            <Prices />
+                            <div className="border-2 border-primary-01 py-1 px-2 text-sm text-primary-01 font-semibold rounded-lg">
+                              1550 грн
+                            </div>
                           </div>
                           <div className="h-full flex flex-col justify-between">
                             <div className="text-gray-03 text-sm font-medium">
@@ -64,10 +66,7 @@ const CartDropdown: FC<CartDropdownProps> = (props) => {
                               </div>
                             </div>
 
-                            <div className="flex justify-between items-center">
-                              <div className="text-sm font-medium">
-                                Кількість 1
-                              </div>
+                            <div className="flex justify-end items-center">
                               <button className="text-sm font-semibold text-primary-01 scale-animation">
                                 Remove
                               </button>
@@ -84,7 +83,9 @@ const CartDropdown: FC<CartDropdownProps> = (props) => {
                             <div className="font-semibold">
                               Rey Nylon Backpack
                             </div>
-                            <Prices />
+                            <div className="border-2 border-primary-01 py-1 px-2 text-sm text-primary-01 font-semibold rounded-lg">
+                              1550 грн
+                            </div>
                           </div>
                           <div className="h-full flex flex-col justify-between">
                             <div className="text-gray-03 text-sm font-medium">
@@ -100,10 +101,7 @@ const CartDropdown: FC<CartDropdownProps> = (props) => {
                               </div>
                             </div>
 
-                            <div className="flex justify-between items-center">
-                              <div className="text-sm font-medium">
-                                Кількість 1
-                              </div>
+                            <div className="flex justify-end items-center">
                               <button className="text-sm font-semibold text-primary-01 scale-animation">
                                 Remove
                               </button>
@@ -120,7 +118,9 @@ const CartDropdown: FC<CartDropdownProps> = (props) => {
                             <div className="font-semibold">
                               Rey Nylon Backpack
                             </div>
-                            <Prices />
+                            <div className="border-2 border-primary-01 py-1 px-2 text-sm text-primary-01 font-semibold rounded-lg">
+                              1550 грн
+                            </div>
                           </div>
                           <div className="h-full flex flex-col justify-between">
                             <div className="text-gray-03 text-sm font-medium">
@@ -136,10 +136,7 @@ const CartDropdown: FC<CartDropdownProps> = (props) => {
                               </div>
                             </div>
 
-                            <div className="flex justify-between items-center">
-                              <div className="text-sm font-medium">
-                                Кількість 1
-                              </div>
+                            <div className="flex justify-end items-center">
                               <button className="text-sm font-semibold text-primary-01 scale-animation">
                                 Remove
                               </button>
@@ -151,15 +148,16 @@ const CartDropdown: FC<CartDropdownProps> = (props) => {
                     <div className="bg-light-blue p-5">
                       <p className="flex justify-between font-semibold text-slate-900">
                         <span>
-                          <span>Subtotal</span>
+                          <span>Повна ціна</span>
                           <span className="block text-sm text-slate-500 dark:text-slate-400 font-normal">
-                            Shipping and taxes calculated at checkout.
+                            Ціна без вартості доставки і податків.
                           </span>
                         </span>
-                        <span className="">$299.00</span>
+                        <span className="">4650 грн</span>
                       </p>
                     </div>
                   </div>
+                  {/* <EmptyCart onClose={onClose} className="relative bg-white" /> */}
                 </div>
               </Dialog.Panel>
             </Transition.Child>

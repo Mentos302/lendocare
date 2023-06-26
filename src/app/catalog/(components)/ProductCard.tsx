@@ -4,7 +4,6 @@ import React, { FC } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
-import Prices from "./Prices";
 
 export interface ProductCardProps {
   className?: string;
@@ -42,7 +41,9 @@ const ProductCard: FC<ProductCardProps> = ({
           </div>
 
           <div className="flex justify-between items-end ">
-            <Prices />
+            <div className="border-2 border-primary-01 py-1 px-2 text-sm text-primary-01 font-semibold rounded-lg">
+              1550 грн
+            </div>
           </div>
         </div>
       </div>

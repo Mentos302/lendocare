@@ -1,8 +1,8 @@
 import Image from "next/image";
 import React from "react";
-import descAboutUs from "../../../public/images/about-us-desc.png";
-import mobAboutUs from "../../../public/images/about-us-mob.png";
-import founders from "../../../public/images/founders.png";
+import descAboutUs from "/public/images/about-us-desc.png";
+import mobAboutUs from "/public/images/about-us-mob.png";
+import founders from "/public/images/founders.png";
 
 const AboutUs = () => {
   return (

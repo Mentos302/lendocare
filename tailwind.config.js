@@ -17,11 +17,11 @@ module.exports = {
         "gray-03": "#637381",
         "gray-04": "#AFB7C3",
         "gray-05": "#545454",
+        "gray-border": "#D1D1D1",
         "light-blue": "#F6F7FA",
         "light-gray": "#F7F7F7",
       },
       boxShadow: {
-    
         field: "0px 1px 2px rgba(0, 0, 0, 0.05);",
       },
     },
