@@ -15,7 +15,7 @@ const Stepper = () => {
           </div>
         </div>
         <div className="flex flex-wrap xl:justify-between justify-center gap-4 lg:gap-6">
-          <div className="flex flex-col justify-between w-full md:w-[340px] lg:w-[365px] border border-gray-04 rounded-2xl bg-white">
+          <div className="flex flex-col justify-between w-full md:w-[340px] lg:w-[365px] border border-gray-border rounded-2xl bg-white">
             <div>
               <div className="relative h-[260px] bg-primary-01 rounded-t-2xl">
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -41,7 +41,7 @@ const Stepper = () => {
               Каталог
             </Link>
           </div>
-          <div className="flex flex-col justify-between w-full md:w-[340px] lg:w-[365px] border border-gray-04 rounded-2xl bg-white">
+          <div className="flex flex-col justify-between w-full md:w-[340px] lg:w-[365px] border border-gray-border rounded-2xl bg-white">
             <div>
               <div className="relative h-[260px] bg-primary-01 rounded-t-2xl">
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -70,7 +70,7 @@ const Stepper = () => {
               Каталог
             </Link>
           </div>
-          <div className="w-full flex flex-col justify-between md:w-[340px] lg:w-[365px] border border-gray-04 rounded-2xl bg-white">
+          <div className="w-full flex flex-col justify-between md:w-[340px] lg:w-[365px] border border-gray-border rounded-2xl bg-white">
             <div>
               <div className="relative h-[260px] bg-primary-01 rounded-t-2xl">
                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">

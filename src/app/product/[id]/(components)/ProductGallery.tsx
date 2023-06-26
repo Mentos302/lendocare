@@ -2,6 +2,7 @@ import "@fancyapps/ui/dist/fancybox/fancybox.css";
 
 import Fancybox from "./Fancybox";
 import { Product } from "@/app/types";
+import Image from "next/image";
 
 type propTypes = { product: Product };
 
@@ -21,7 +22,13 @@ const ProductGallery = ({ product }: propTypes) => {
         }}
       >
         <a data-fancybox="gallery" href={thumbnail} className="block mb-5">
-          <img src={thumbnail} className="w-full rounded-2xl" />
+          <Image
+            width={578}
+            height={578}
+            src={thumbnail}
+            className=" rounded-2xl"
+            alt="product image"
+          />
         </a>
         <div className="flex gap-5 px-3">
           {photos.map((photo, i) => (
@@ -31,7 +38,13 @@ const ProductGallery = ({ product }: propTypes) => {
               className="block mb-3"
               key={i}
             >
-              <img src={photo} className="w-full rounded-2xl" />
+              <Image
+                width={115}
+                height={115}
+                src={photo}
+                className="w-full rounded-2xl"
+                alt="product image"
+              />
             </a>
           ))}
         </div>

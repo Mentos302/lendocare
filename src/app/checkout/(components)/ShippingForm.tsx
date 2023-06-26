@@ -21,10 +21,8 @@ type ShippingFormProps = {
 export const ShippingForm: FC<ShippingFormProps> = (props) => {
   const { formData, setFormStep } = props;
 
-  const [deliveryByCourier, setDeliveryByCourier] = useState(false);
+  const [deliveryByCourier, setDeliveryByCourier] = useState(true);
   const [deliveryToBranch, setDeliveryToBranch] = useState(false);
-
-  const checkboxValidationStatus = deliveryByCourier || deliveryByCourier;
 
   const options = createDropdownOptions(novaPostBranches);
 
@@ -42,7 +40,8 @@ export const ShippingForm: FC<ShippingFormProps> = (props) => {
           branch: yup.string().required("Вкажіть номер відділення"),
         }
       : {}),
-    checkbox: yup.array().min(1).of(yup.string().required()).required(),
+    // checkbox: yup.array().min(1).of(yup.string().required()).required(),
+    shipping: yup.string().required("Please select at least one option"),
   });
 
   const {
@@ -51,14 +50,19 @@ export const ShippingForm: FC<ShippingFormProps> = (props) => {
     reset,
     unregister,
     control,
+    setValue,
     formState: { errors, isValid, isDirty },
   } = useForm({
     resolver: useYupValidationResolver(schema),
+    defaultValues: {
+      shipping: "courier",
+    },
   });
 
   const handleDeliveryByCourierChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
+    setValue("shipping", e.target.value);
     setDeliveryByCourier(e.target.checked);
     if (e.target.checked) {
       setDeliveryToBranch(false);
@@ -79,6 +83,7 @@ export const ShippingForm: FC<ShippingFormProps> = (props) => {
   const handleDeliveryToBranchChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
+    setValue("shipping", e.target.value);
     setDeliveryToBranch(e.target.checked);
     if (e.target.checked) {
       setDeliveryByCourier(false);
@@ -100,8 +105,10 @@ export const ShippingForm: FC<ShippingFormProps> = (props) => {
       if ("apartment" in data && data?.apartment)
         formData.append("apartment", data?.apartment);
     }
-    console.log("xxx", data);
-    setFormStep(2);
+    if (deliveryToBranch) {
+      if ("branch" in data && data?.branch)
+        formData.append("branch", data?.branch);
+    }
   };
 
   return (
@@ -114,17 +121,17 @@ export const ShippingForm: FC<ShippingFormProps> = (props) => {
                 "flex gap-3 items-center cursor-pointer text-gray-01 text-sm sm:text-base",
                 {
                   "text-primary-01": deliveryByCourier,
-                  "text-red-500": errors.checkbox,
+                  "text-red-500": errors.shipping,
                 }
               )}
             >
               Доставка кур&apos;єром
               <input
                 className="h-4 w-4 text-sm sm:text-base cursor-pointer accent-primary-01 focus:ring-0 focus:ring-offset-0"
-                type="checkbox"
-                id="checkbox"
-                {...register("checkbox")}
-                checked={deliveryByCourier}
+                type="radio"
+                {...register("shipping")}
+                value="courier"
+                // checked={deliveryByCourier}
                 onChange={handleDeliveryByCourierChange}
               />
             </label>
@@ -135,17 +142,17 @@ export const ShippingForm: FC<ShippingFormProps> = (props) => {
                 "flex gap-3 items-center cursor-pointer text-gray-01 text-sm sm:text-base",
                 {
                   "text-primary-01": deliveryToBranch,
-                  "text-red-500": errors.checkbox,
+                  "text-red-500": errors.shipping,
                 }
               )}
             >
               Доставка на відділення
               <input
                 className="h-4 w-4 text-sm sm:text-base cursor-pointer accent-primary-01 focus:ring-0 focus:ring-offset-0"
-                type="checkbox"
-                id="checkbox"
-                {...register("checkbox")}
-                checked={deliveryToBranch}
+                type="radio"
+                {...register("shipping")}
+                value="delivery"
+                // checked={deliveryToBranch}
                 onChange={handleDeliveryToBranchChange}
               />
             </label>
@@ -221,7 +228,9 @@ export const ShippingForm: FC<ShippingFormProps> = (props) => {
             type="submit"
             className="w-fit mt-4 text-base py-3 btn-primary"
           >
-            Підтвердити адрес
+            <a onClick={() => setFormStep(2)} href="#confirmOrder">
+              Підтвердити адрес
+            </a>
           </HeadlessDisclosure.Button>
         )}
       </Disclosure>

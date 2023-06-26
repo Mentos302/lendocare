@@ -9,7 +9,7 @@ const ProductPricing = ({ pricing }: propTypes) => {
 
   return (
     <div className="py-[25px] border-y border-gray-300">
-      <div className="flex gap-2.5 font-semibold text-xl md:text-2xl xl:text-[32px] text-gray-01 mb-4">
+      <div className="flex gap-2.5 font-semibold text-xl md:text-2xl text-gray-01 mb-4">
         <span>Від</span>
         <span className="px-2 text-primary-01 bg-primary-50">{minPrice}</span>
         <span>грн/тиждень</span>
