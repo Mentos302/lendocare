@@ -26,9 +26,11 @@ export type Product = {
 };
 
 export type Pricing = {
-  priceSchedule: {
-    fromNight: number;
-    untilNight: number;
-    totalPrice: number;
-  }[];
+  priceSchedule: PriceSchedule[];
+};
+
+export type PriceSchedule = {
+  fromNight: number;
+  untilNight: number;
+  totalPrice: number;
 };

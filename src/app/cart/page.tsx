@@ -21,10 +21,6 @@ const Cart = () => {
     resolver: useYupValidationResolver(schema),
   });
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-  };
-
   return (
     <div className="container-box mb-8">
       <div className="my-8 w-full border-t border-t-light-gray" />

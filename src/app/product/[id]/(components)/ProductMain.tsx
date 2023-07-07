@@ -8,6 +8,7 @@ import { Product } from "@/app/types";
 import ProductPricing from "./ProductPricing";
 import HowItWorks from "./HowItWorks";
 import { getFirstSentence } from "@/utils/getFirstSentence";
+import { Ordering } from "./Ordering";
 
 type propTypes = { product: Product };
 
@@ -43,7 +44,14 @@ const ProductMain = ({ product }: propTypes) => {
             >
               Детальніше
             </a>
-            <ProductPricing pricing={product.pricePlan} />
+            <ProductPricing pricing={product.pricePlan}>
+              <Ordering
+                name={product.name}
+                prices={product.pricePlan.priceSchedule}
+                id={product.lendoProductId}
+                thumb={product.image}
+              />
+            </ProductPricing>
             <HowItWorks />
           </>
         </Sticky>

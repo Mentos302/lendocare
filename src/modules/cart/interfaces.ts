@@ -1,9 +1,11 @@
 export interface CartItem {
+  id: string;
   lendoProductId: number;
-  quantity: number;
-  deliveryType: string;
-  fromDate: Date | null;
-  toDate: Date | null;
+  name: string;
+  thumb: string;
+  price: number;
+  startDate: null | Date | string;
+  endDate: null | Date | string;
 }
 
 export interface initialStateType {
@@ -13,8 +15,7 @@ export interface initialStateType {
 export interface CartState {
   cart: CartItem[];
   addToCart: (product: CartItem) => void;
-  removeFromCart: (productId: number) => void;
-  updateQuantity: (productId: number, action: "increase" | "decrease") => void;
+  removeFromCart: (itemId: string) => void;
   toggleCart: () => void;
   showCart: boolean;
 }

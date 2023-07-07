@@ -3,6 +3,4 @@ import { useCartStore } from "@/modules/cart/store";
 
 export const useCheckout = () => {
   const cart = useCartStore((state) => state.cart);
-
-  cart.map((item) => console.log(item));
 };
