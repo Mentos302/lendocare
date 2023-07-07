@@ -38,7 +38,7 @@ const CartDropdown: FC = () => {
                     </div>
                     <div className="p-5 flex flex-col gap-4 justify-between ">
                       {cart.map((item) => (
-                        <div className="w-full flex gap-4">
+                        <div key={item.id} className="w-full flex gap-4">
                           <Link
                             href={`/product/${item.lendoProductId}`}
                             onClick={() => toggleCart()}
