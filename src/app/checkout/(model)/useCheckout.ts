@@ -74,7 +74,7 @@ export const useCheckout = () => {
         phone: phoneNumber,
         email: "",
       },
-      ...(branch
+      location: branch
         ? {
             line1: "Нова пошта",
             line2: "Відділення " + branch,
@@ -86,7 +86,7 @@ export const useCheckout = () => {
             line2: checkout.apartment,
             townOrCity: checkout.city,
             postcode: "",
-          }),
+          },
       instructions: null,
       vatExempt: false,
     });
