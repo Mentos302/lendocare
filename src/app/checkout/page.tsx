@@ -3,6 +3,7 @@
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
+import { toast, Toaster } from "react-hot-toast";
 import { SvgDateFinish, SvgDateStart } from "../(svg)/AllSvg";
 import ContactInfoForm from "./(components)/ContactInfoForm";
 import { ShippingForm } from "./(components)/ShippingForm";
@@ -10,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { useCartStore } from "@/modules/cart/store";
 import Link from "next/link";
 import { useCheckout } from "./(model)/useCheckout";
+import ThankYou from "./(components)/ThankYou";
 
 const Checkout = () => {
   const submitCheckout = useCheckout();
@@ -18,116 +20,130 @@ const Checkout = () => {
   const { cart } = useCartStore((state) => state);
 
   const confirmOrder = async () => {
+    window.scrollTo(0, 0);
+    setFormStep(3);
     await submitCheckout();
-
+    toast.success("Замовлення успішно створене!");
     // SUCCESS TOAST
   };
 
   return (
     <div className="container-box">
-      <div
-        id="order"
-        className="my-10 text-2xl sm:text-3xl lg:text-4xl font-semibold"
-      >
-        Оформлення замовлення
-      </div>
-      <div className=" mb-10 flex flex-col lg:flex-row">
-        <div className="lg:w-[60%]">
-          <ContactInfoForm setFormStep={setFormStep} />
-          {formStep >= 1 && <ShippingForm setFormStep={setFormStep} />}
-        </div>
-        <div className="hidden lg:block mx-8 border-r border-r-light-gray" />
-        <div className="lg:w-[40%]">
-          <div className="mt-8 lg:mt-0 text-xl text-gray-01 font-semibold">
-            Підсумок замовлення
+      {formStep !== 3 ? (
+        <>
+          <div
+            id="order"
+            className="my-10 text-2xl sm:text-3xl lg:text-4xl font-semibold"
+          >
+            Оформлення замовлення
           </div>
-          {cart.map((item) => (
-            <div
-              className="w-full flex gap-4 border-b border-b-light-gray py-5 first:pt-0"
-              key={item.id}
-            >
-              <Link href={`/product/${item.lendoProductId}`}>
-                <div className="relative bg-gray-400 rounded-2xl min-w-[80px] h-24 scale-animation">
-                  <Image
-                    src={item.thumb}
-                    alt="Image description"
-                    fill={true}
-                    style={{ objectFit: "cover" }}
-                    className="rounded-2xl"
-                  />
-                </div>
-              </Link>
-              <div className="w-full flex flex-col">
-                <div className="flex items-center justify-between">
+          <div className=" mb-10 flex flex-col lg:flex-row">
+            <div className="lg:w-[60%]">
+              <ContactInfoForm setFormStep={setFormStep} />
+              {formStep >= 1 && <ShippingForm setFormStep={setFormStep} />}
+            </div>
+            <div className="hidden lg:block mx-8 border-r border-r-light-gray" />
+            <div className="lg:w-[40%]">
+              <div className="mt-8 lg:mt-0 text-xl text-gray-01 font-semibold">
+                Підсумок замовлення
+              </div>
+              {cart.map((item) => (
+                <div
+                  className="w-full flex gap-4 border-b border-b-light-gray py-5 first:pt-0"
+                  key={item.id}
+                >
                   <Link href={`/product/${item.lendoProductId}`}>
-                    <div className="font-semibold">{item.name}</div>
-                  </Link>
-                  <div className="border-2 border-primary-01 py-1 px-2 text-sm text-primary-01 font-semibold rounded-lg">
-                    {item.price} грн
-                  </div>
-                </div>
-                <div className="text-gray-03 text-sm font-medium">
-                  <div>
-                    {item.startDate !== item.endDate ? "Термін " : "Початок "}
-                    оренди:
-                  </div>
-                  <div className="flex gap-2">
-                    <div className="flex gap-1 items-center">
-                      <SvgDateFinish />
-                      <>{item.startDate}</>
+                    <div className="relative bg-gray-400 rounded-2xl min-w-[80px] h-24 scale-animation">
+                      <Image
+                        src={item.thumb}
+                        alt="Image description"
+                        fill={true}
+                        style={{ objectFit: "cover" }}
+                        className="rounded-2xl"
+                      />
                     </div>
-                    {item.startDate !== item.endDate ? (
-                      <>
-                        <div className="font-medium">-</div>
+                  </Link>
+                  <div className="w-full flex flex-col">
+                    <div className="flex items-center justify-between">
+                      <Link href={`/product/${item.lendoProductId}`}>
+                        <div className="font-semibold">{item.name}</div>
+                      </Link>
+                      <div className="border-2 border-primary-01 py-1 px-2 text-sm text-primary-01 font-semibold rounded-lg">
+                        {item.price} грн
+                      </div>
+                    </div>
+                    <div className="text-gray-03 text-sm font-medium">
+                      <div>
+                        {item.startDate !== item.endDate
+                          ? "Термін "
+                          : "Початок "}
+                        оренди:
+                      </div>
+                      <div className="flex gap-2">
                         <div className="flex gap-1 items-center">
-                          {/* <SvgDateStart /> */}
-                          <>{item.endDate}</>
+                          <SvgDateFinish />
+                          <>{item.startDate}</>
                         </div>
-                      </>
-                    ) : null}
+                        {item.startDate !== item.endDate ? (
+                          <>
+                            <div className="font-medium">-</div>
+                            <div className="flex gap-1 items-center">
+                              {/* <SvgDateStart /> */}
+                              <>{item.endDate}</>
+                            </div>
+                          </>
+                        ) : null}
+                      </div>
+                    </div>
                   </div>
                 </div>
+              ))}
+              <div className="mt-2">
+                <div className="py-2 flex justify-between text-sm">
+                  <div className="text-gray-03">Ціна товару</div>
+                  <div className="text-gray-01 font-semibold">
+                    {cart.reduce((total, item) => total + item.price, 0)} грн
+                  </div>
+                </div>
+                <div className="py-2 flex justify-between text-sm">
+                  <div className="text-gray-03">Доставка</div>
+                  <div className="text-gray-01 font-semibold">25.00 грн</div>
+                </div>
+                <div className="py-2 flex justify-between text-sm">
+                  <div className="text-gray-03">Податки</div>
+                  <div className="text-gray-01 font-semibold">75.00 грн</div>
+                </div>
+                <div className="py-2 flex justify-between text-gray-01 font-semibold text-base">
+                  <div>Загальна ціна</div>
+                  <div>
+                    {cart.reduce((total, item) => total + item.price, 0)} грн
+                  </div>
+                </div>
+                <div className="w-full mt-2 flex justify-center sm:justify-end">
+                  <button
+                    id="confirmOrder"
+                    disabled={formStep !== 2}
+                    onClick={confirmOrder}
+                    form="orderForm"
+                    className={classNames(
+                      "btn-primary text-sm sm:text-base mt-3",
+                      {
+                        "opacity-70 hover:bg-primary-01 hover:text-white":
+                          formStep !== 2,
+                      }
+                    )}
+                  >
+                    Підтвердити замовлення
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
-          <div className="mt-2">
-            <div className="py-2 flex justify-between text-sm">
-              <div className="text-gray-03">Ціна товару</div>
-              <div className="text-gray-01 font-semibold">
-                {cart.reduce((total, item) => total + item.price, 0)} грн
-              </div>
-            </div>
-            <div className="py-2 flex justify-between text-sm">
-              <div className="text-gray-03">Доставка</div>
-              <div className="text-gray-01 font-semibold">25.00 грн</div>
-            </div>
-            <div className="py-2 flex justify-between text-sm">
-              <div className="text-gray-03">Податки</div>
-              <div className="text-gray-01 font-semibold">75.00 грн</div>
-            </div>
-            <div className="py-2 flex justify-between text-gray-01 font-semibold text-base">
-              <div>Загальна ціна</div>
-              <div>
-                {cart.reduce((total, item) => total + item.price, 0)} грн
-              </div>
-            </div>
-            <div className="w-full mt-2 flex justify-end">
-              <button
-                id="confirmOrder"
-                disabled={formStep !== 2}
-                onClick={confirmOrder}
-                form="orderForm"
-                className={classNames("btn-primary mt-3", {
-                  "opacity-70 hover:bg-primary-01 hover:text-white":
-                    formStep !== 2,
-                })}
-              >
-                Підтвердити замовлення
-              </button>
             </div>
           </div>
-        </div>
-      </div>
+        </>
+      ) : (
+        <ThankYou />
+      )}
+      <Toaster />
     </div>
   );
 };

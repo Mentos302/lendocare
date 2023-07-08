@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { SvgBurger, SvgCareLogo, SvgCart, SvgLogo } from "../(svg)/AllSvg";
 import Link from "next/link";
@@ -9,10 +9,9 @@ import classNames from "classnames";
 import CartDropdown from "../cart/(components)/CartDropdown";
 import { useCartStore } from "@/modules/cart/store";
 
-export default function Example() {
+export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { toggleCart } = useCartStore((state) => state);
-
   const pathname = usePathname();
 
   const onCloseNodalHandler = () => {
@@ -79,13 +78,8 @@ export default function Example() {
           </Link>
         </div>
         <div className="hidden gap-4 lg:flex lg:flex-1 lg:justify-end">
-          <button
-            onClick={() => toggleCart()}
-            className="px-6 py-3 border-2 border-primary-01 rounded-[48px] scale-animation"
-          >
-            <SvgCart />
-          </button>
           <CartDropdown />
+
           <a href="/#stepper" className="btn-primary scale-animation">
             Як це працює?
           </a>

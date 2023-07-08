@@ -23,6 +23,7 @@ module.exports = {
         "gray-border": "#D1D1D1",
         "light-blue": "#F6F7FA",
         "light-gray": "#F7F7F7",
+        "thank-blue": "#F6FBFF"
       },
       boxShadow: {
         field: "0px 1px 2px rgba(0, 0, 0, 0.05);",

@@ -1,4 +1,5 @@
 import { SvgEmptyCart } from "@/app/(svg)/AllSvg";
+import { useCartStore } from "@/modules/cart/store";
 import classNames from "classnames";
 import Link from "next/link";
 import React, { FC } from "react";
@@ -10,6 +11,7 @@ type EmptyCartProps = {
 
 const EmptyCart: FC<EmptyCartProps> = (props) => {
   const { className = "", onClose } = props;
+  const { setShowCart } = useCartStore((state) => state);
 
   return (
     <div

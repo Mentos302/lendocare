@@ -77,14 +77,14 @@ const ContactInfoForm: FC<ContactInfoFormProps> = (props) => {
         {!isValid || !isDirty ? (
           <button
             type="submit"
-            className="w-fit mt-4 text-base py-3 btn-primary"
+            className="w-fit mt-4 text-sm  sm:text-base py-3 btn-primary"
           >
             Підтвердити інформацію
           </button>
         ) : (
           <HeadlessDisclosure.Button
             type="submit"
-            className="w-fit mt-4 text-base py-3 btn-primary"
+            className="w-fit mt-4 text-sm sm:text-base py-3 btn-primary"
           >
             Підтвердити інформацію
           </HeadlessDisclosure.Button>

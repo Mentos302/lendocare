@@ -38,6 +38,10 @@ export const useCartStore = create<CartState>()(
         set((state) => {
           state.showCart = !state.showCart;
         }),
+      setShowCart: (value: boolean) =>
+        set((state) => {
+          state.showCart = value;
+        }),
     })),
     { name: "cartState", version: 1 }
   )
