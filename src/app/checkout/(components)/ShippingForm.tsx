@@ -233,11 +233,12 @@ export const ShippingForm: FC<ShippingFormProps> = (props) => {
             Підтвердити адрес
           </button>
         ) : (
-          <HeadlessDisclosure.Button
-            type="submit"
-            className="w-fit mt-4 text-base py-3 btn-primary"
-          >
-            <a onClick={() => setFormStep(2)} href="#confirmOrder">
+          <HeadlessDisclosure.Button type="submit">
+            <a
+              className="block w-fit mt-4 text-base py-3 btn-primary"
+              onClick={() => setFormStep(2)}
+              href="#confirmOrder"
+            >
               Підтвердити адрес
             </a>
           </HeadlessDisclosure.Button>

@@ -5,7 +5,8 @@ import {
 } from "@/app/(svg)/AllSvg";
 import { PriceSchedule, Pricing, Product } from "@/app/types";
 import { Dialog, Transition } from "@headlessui/react";
-import { FC, Fragment, useRef, useState } from "react";
+import { FC, Fragment, RefObject, useEffect, useRef, useState } from "react";
+import { toast, Toaster } from "react-hot-toast";
 import { useCartStore } from "@/modules/cart/store";
 import dayjs from "dayjs";
 import { CartItem } from "@/modules/cart/interfaces";
@@ -94,6 +95,8 @@ export const Ordering: FC<OrderingPropsType> = (props) => {
   };
 
   const submitHandler = () => {
+    window.scrollTo(0, 0);
+    toast.success("Товар успішно додано до корзини!");
     const dates = exactDate.startDate ? exactDate : flexibleDate;
     const price = calculatePrice(dates) || 0;
 
@@ -113,10 +116,20 @@ export const Ordering: FC<OrderingPropsType> = (props) => {
     toggleCart();
   };
 
+  const ModalCloseHandler = () => {
+    setOpenModal(false);
+  };
+
+  const ModalOpenHandler = () => {
+    setOpenModal(true);
+  };
+
   return (
     <>
+      <Toaster />
       <Transition.Root show={openModal} as={Fragment}>
         <Dialog
+          id="calendar"
           as="div"
           className="relative z-10"
           initialFocus={cancelButtonRef}
@@ -145,9 +158,9 @@ export const Ordering: FC<OrderingPropsType> = (props) => {
                 leaveFrom="opacity-100 translate-y-0 sm:scale-100"
                 leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               >
-                <Dialog.Panel className="relative min-h-fit min-w-[700px] flex transform rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
-                  <div className="flex flex-col gap-5 p-5">
-                    <div className="flex gap-5 text-gray-01">
+                <Dialog.Panel className="relative min-h-fit md:min-w-[700px] flex transform rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
+                  <div className="flex flex-col gap-2 md:gap-5 p-5">
+                    <div className="flex flex-col md:flex-row gap-2 md:gap-5 text-gray-01">
                       <div className="w-full flex flex-col how-it-works-bg-2 items-center p-2.5 rounded-lg">
                         <span className="text-sm">
                           До <b>{Math.floor(prices[0].untilNight / 7)}</b>{" "}
@@ -183,13 +196,13 @@ export const Ordering: FC<OrderingPropsType> = (props) => {
                         <span className="text-xs">грн/тиждень</span>
                       </div>
                     </div>
-                    <div className="flex gap-5 ">
-                      <div className="w-full flex flex-col items-center  p-10 px-8 rounded-lg bg-primary-01  text-center gap-5 text-white">
+                    <div className="flex flex-col md:flex-row gap-2 md:gap-5 ">
+                      <div className="w-full flex flex-col items-center  p-10 px-8 rounded-lg bg-primary-01  text-center justify-between gap-3 sm:gap-5 text-white">
                         <SvgExactPeriod />
-                        <b className="text-2xl font-semibold">
+                        <b className="text-xl sm:text-2xl font-semibold">
                           Точний період користування
                         </b>
-                        <p className="text-s">
+                        <p className="text-sm">
                           Підійде для тих, кому обладаняння потрібне на
                           конкретний період часу
                         </p>
@@ -215,12 +228,12 @@ export const Ordering: FC<OrderingPropsType> = (props) => {
                           Обрати
                         </div>
                       </div>
-                      <div className="w-full flex flex-col items-center  p-10 px-8 rounded-lg bg-primary-50 text-center gap-5 text-gray-01">
+                      <div className="w-full flex flex-col items-center p-10 px-8 rounded-lg bg-primary-50 text-center justify-between gap-3 sm:gap-5 text-gray-01">
                         <SvgFlexiblePeriod />
-                        <b className="text-2xl font-semibold">
+                        <b className="text-xl sm:text-2xl font-semibold">
                           Гнучкий період користування
                         </b>
-                        <p className="text-s">
+                        <p className="text-sm">
                           Підійде для тих, кому обладнання потрібне на
                           невизначений термін
                         </p>
@@ -249,8 +262,8 @@ export const Ordering: FC<OrderingPropsType> = (props) => {
                         </div>
                       </div>
                     </div>
-                    <div className="flex items-center justify-between  text-lg">
-                      <span className="w-2/5 text-base text-gray-01">
+                    <div className="flex flex-col md:flex-row items-center justify-between  text-lg">
+                      <span className=" md:w-2/5 text-base text-gray-01">
                         {total ? (
                           <>
                             Вартісь за весь час користування:{" "}
@@ -260,15 +273,23 @@ export const Ordering: FC<OrderingPropsType> = (props) => {
                           "Оберіть дату, щоб дізнатись вартість і замовити товар."
                         )}
                       </span>
-                      <button
-                        className={`transition-all duration-300 ease min-w-fit flex items-center justify-center gap-2.5 py-1.5 xl:py-3 px-9 rounded-lg  
+                      <div className="mt-5 md:mt-0 flex w-full sm:w-fit flex-col sm:flex-row gap-5">
+                        <button
+                          onClick={ModalCloseHandler}
+                          className="block md:hidden w-full sm:w-fit btn-outline py-1.5 xl:py-3 px-9 rounded-lg "
+                        >
+                          Закрити
+                        </button>
+                        <button
+                          className={`transition-all duration-300 ease w-full sm:w-fit flex items-center justify-center gap-2.5 py-1.5 xl:py-3 px-9 rounded-lg  
           ${
             submit ? "bg-primary-01" : "bg-gray-200 cursor-default"
           } text-white`}
-                        onClick={submitHandler}
-                      >
-                        <span>Замовити</span>
-                      </button>
+                          onClick={submitHandler}
+                        >
+                          <span>Замовити</span>
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </Dialog.Panel>
@@ -278,7 +299,7 @@ export const Ordering: FC<OrderingPropsType> = (props) => {
         </Dialog>
       </Transition.Root>
       <div
-        onClick={() => setOpenModal(true)}
+        onClick={ModalOpenHandler}
         className="grid grid-cols-2 gap-4 text-lg sm:text-xl font-medium text-white"
       >
         <button className="min-w-fit flex items-center justify-center gap-2.5 py-2.5 xl:py-3.5 px-9 rounded-lg bg-primary-01">

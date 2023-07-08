@@ -20,6 +20,7 @@ export interface CartState {
   emptyCart: () => void;
   toggleCart: () => void;
   showCart: boolean;
+  setShowCart: (values: boolean) => void
 }
 
 export interface CheckoutState {
