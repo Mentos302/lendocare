@@ -1,20 +1,28 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import Image from "next/image";
+import React, { useEffect, useRef, useState } from "react";
 import classNames from "classnames";
 import { SvgDateFinish, SvgDateStart } from "../(svg)/AllSvg";
 import ContactInfoForm from "./(components)/ContactInfoForm";
 import { ShippingForm } from "./(components)/ShippingForm";
 import { useRouter } from "next/navigation";
+import { useCartStore } from "@/modules/cart/store";
+import Link from "next/link";
+import { useCheckout } from "./(model)/useCheckout";
 
 const Checkout = () => {
+  const submitCheckout = useCheckout();
   const router = useRouter();
   const [formStep, setFormStep] = useState(0);
   const ref = useRef(new FormData());
+  const { cart } = useCartStore((state) => state);
   const formData = ref.current;
 
-  const confirmOrder = () => {
-    router.push("/");
+  const confirmOrder = async () => {
+    await submitCheckout();
+
+    // SUCCESS TOAST
   };
 
   return (
@@ -37,138 +45,58 @@ const Checkout = () => {
           <div className="mt-8 lg:mt-0 text-xl text-gray-01 font-semibold">
             Підсумок замовлення
           </div>
-          <div className="w-full flex gap-4 border-b border-b-light-gray py-5 first:pt-0">
-            <div>
-              <div className="bg-gray-400 rounded-2xl min-w-[80px] h-24 sm:min-w-[128px] sm:h-32" />
-            </div>
-            <div className="w-full flex flex-col">
-              <div className="flex items-center justify-between">
-                <div className="font-semibold">Rey Nylon Backpack</div>
-                <div className="border-2 border-primary-01 py-1 px-2 text-sm text-primary-01 font-semibold rounded-lg">
-                  1550 грн
+          {cart.map((item) => (
+            <div className="w-full flex gap-4 border-b border-b-light-gray py-5 first:pt-0">
+              <Link href={`/product/${item.lendoProductId}`}>
+                <div className="relative bg-gray-400 rounded-2xl min-w-[80px] h-24 scale-animation">
+                  <Image
+                    src={item.thumb}
+                    alt="Image description"
+                    fill={true}
+                    style={{ objectFit: "cover" }}
+                    className="rounded-2xl"
+                  />
                 </div>
-              </div>
-              <div className="h-full flex flex-col justify-between">
+              </Link>
+              <div className="w-full flex flex-col">
+                <div className="flex items-center justify-between">
+                  <Link href={`/product/${item.lendoProductId}`}>
+                    <div className="font-semibold">{item.name}</div>
+                  </Link>
+                  <div className="border-2 border-primary-01 py-1 px-2 text-sm text-primary-01 font-semibold rounded-lg">
+                    {item.price} грн
+                  </div>
+                </div>
                 <div className="text-gray-03 text-sm font-medium">
-                  <div>Час оренди:</div>
+                  <div>
+                    {item.startDate !== item.endDate ? "Термін " : "Початок "}
+                    оренди:
+                  </div>
                   <div className="flex gap-2">
                     <div className="flex gap-1 items-center">
-                      <SvgDateFinish /> 29.06.2023
+                      <SvgDateFinish />
+                      <>{item.startDate}</>
                     </div>
-                    <div className="font-medium">-</div>
-                    <div className="flex gap-1 items-center">
-                      <SvgDateStart /> 29.11.2023
-                    </div>
+                    {item.startDate !== item.endDate ? (
+                      <>
+                        <div className="font-medium">-</div>
+                        <div className="flex gap-1 items-center">
+                          {/* <SvgDateStart /> */}
+                          <>{item.endDate}</>
+                        </div>
+                      </>
+                    ) : null}
                   </div>
-                </div>
-
-                <div className="mt-3 sm:mt-0 flex justify-between items-center">
-                  <div className="flex gap-5 items-center">
-                    <button className="flex justify-center items-center px-3 py-1 border hover:border-gray-03 scale-animation rounded-full">
-                      -
-                    </button>
-                    <div>1</div>
-                    <button className="flex justify-center items-center px-3 py-1 border hover:border-gray-03 scale-animation rounded-full">
-                      +
-                    </button>
-                  </div>
-                  <button className="text-sm sm:text-base font-semibold text-primary-01 scale-animation">
-                    Remove
-                  </button>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="w-full flex gap-4 border-b border-b-light-gray py-5 first:pt-0">
-            <div>
-              <div className="bg-gray-400 rounded-2xl min-w-[80px] h-24 sm:min-w-[128px] sm:h-32" />
-            </div>
-            <div className="w-full flex flex-col">
-              <div className="flex items-center justify-between">
-                <div className="font-semibold">
-                  Rey Nyl on Backpack Rey Nylon Backp ack Rey Ny lon Back pack
-                </div>
-                <div className="border-2 border-primary-01 py-1 px-2 text-sm text-primary-01 font-semibold rounded-lg">
-                  1550 грн
-                </div>
-              </div>
-              <div className="h-full flex flex-col justify-between">
-                <div className="text-gray-03 text-sm font-medium">
-                  <div>Час оренди:</div>
-                  <div className="flex gap-2">
-                    <div className="flex gap-1 items-center">
-                      <SvgDateFinish /> 29.06.2023
-                    </div>
-                    <div className="font-medium">-</div>
-                    <div className="flex gap-1 items-center">
-                      <SvgDateStart /> 29.11.2023
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-3 sm:mt-0 flex justify-between items-center">
-                  <div className="flex gap-5 items-center">
-                    <button className="flex justify-center items-center px-3 py-1 border hover:border-gray-03 scale-animation rounded-full">
-                      -
-                    </button>
-                    <div>1</div>
-                    <button className="flex justify-center items-center px-3 py-1 border hover:border-gray-03 scale-animation rounded-full">
-                      +
-                    </button>
-                  </div>
-                  <button className="text-sm sm:text-base font-semibold text-primary-01 scale-animation">
-                    Remove
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="w-full flex gap-4 border-b border-b-light-gray py-5 first:pt-0">
-            <div>
-              <div className="bg-gray-400 rounded-2xl min-w-[80px] h-24 sm:min-w-[128px] sm:h-32" />
-            </div>
-            <div className="w-full flex flex-col">
-              <div className="flex items-center justify-between">
-                <div className="font-semibold">Rey Nylon Backpack</div>
-                <div className="border-2 border-primary-01 py-1 px-2 text-sm text-primary-01 font-semibold rounded-lg">
-                  1550 грн
-                </div>
-              </div>
-              <div className="h-full flex flex-col justify-between">
-                <div className="text-gray-03 text-sm font-medium">
-                  <div>Час оренди:</div>
-                  <div className="flex gap-2">
-                    <div className="flex gap-1 items-center">
-                      <SvgDateFinish /> 29.06.2023
-                    </div>
-                    <div className="font-medium">-</div>
-                    <div className="flex gap-1 items-center">
-                      <SvgDateStart /> 29.11.2023
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-3 sm:mt-0 flex justify-between items-center">
-                  <div className="flex gap-5 items-center">
-                    <button className="flex justify-center items-center px-3 py-1 border hover:border-gray-03 scale-animation rounded-full">
-                      -
-                    </button>
-                    <div>1</div>
-                    <button className="flex justify-center items-center px-3 py-1 border hover:border-gray-03 scale-animation rounded-full">
-                      +
-                    </button>
-                  </div>
-                  <button className="text-sm sm:text-base font-semibold text-primary-01 scale-animation">
-                    Remove
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
           <div className="mt-2">
             <div className="py-2 flex justify-between text-sm">
               <div className="text-gray-03">Ціна товару</div>
-              <div className="text-gray-01 font-semibold">299.00 грн</div>
+              <div className="text-gray-01 font-semibold">
+                {cart.reduce((total, item) => total + item.price, 0)} грн
+              </div>
             </div>
             <div className="py-2 flex justify-between text-sm">
               <div className="text-gray-03">Доставка</div>
@@ -180,15 +108,17 @@ const Checkout = () => {
             </div>
             <div className="py-2 flex justify-between text-gray-01 font-semibold text-base">
               <div>Загальна ціна</div>
-              <div>399.00 грн</div>
+              <div>
+                {cart.reduce((total, item) => total + item.price, 0)} грн
+              </div>
             </div>
-            <div className="mt-2 flex justify-center">
+            <div className="w-full mt-2 flex justify-end">
               <button
                 id="confirmOrder"
                 disabled={formStep !== 2}
                 onClick={confirmOrder}
                 form="orderForm"
-                className={classNames("btn-primary", {
+                className={classNames("btn-primary mt-3", {
                   "opacity-70 hover:bg-primary-01 hover:text-white":
                     formStep !== 2,
                 })}

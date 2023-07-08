@@ -2,7 +2,12 @@
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 import { persist } from "zustand/middleware";
-import { CartItem, CartState, initialStateType } from "./interfaces";
+import {
+  CartItem,
+  CartState,
+  CheckoutState,
+  initialStateType,
+} from "./interfaces";
 
 const initialState: initialStateType = {
   cart: [],
@@ -24,6 +29,10 @@ export const useCartStore = create<CartState>()(
             (product: CartItem) => product.id !== itemId
           );
         }),
+      emptyCart: () =>
+        set((state) => {
+          state.cart = [];
+        }),
       showCart: false,
       toggleCart: () =>
         set((state) => {
@@ -31,6 +40,15 @@ export const useCartStore = create<CartState>()(
         }),
     })),
     { name: "cartState", version: 1 }
+  )
+);
+
+export const useCheckoutStore = create<CheckoutState>()(
+  persist(
+    immer((set) => ({
+      ...initialState,
+    })),
+    { name: "checkoutState", version: 1 }
   )
 );
 

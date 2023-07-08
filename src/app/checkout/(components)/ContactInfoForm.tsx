@@ -8,6 +8,7 @@ import { useYupValidationResolver } from "@/utils/useYupValidationResolver";
 import { contactInfoSchema } from "@/utils/validationSchemas";
 import React, { FC } from "react";
 import { useForm } from "react-hook-form";
+import { useCheckoutStore } from "@/modules/cart/store";
 
 type ContactInfoFormProps = {
   formData: FormData;
@@ -15,24 +16,28 @@ type ContactInfoFormProps = {
 };
 
 const ContactInfoForm: FC<ContactInfoFormProps> = (props) => {
-  const { formData, setFormStep } = props;
+  const state = useCheckoutStore((state) => state);
+  const { setFormStep } = props;
 
   const {
     register,
     handleSubmit,
-
     formState: { errors, isValid, isDirty },
   } = useForm({
     resolver: useYupValidationResolver(contactInfoSchema),
   });
 
   const onSubmit = async (data: any) => {
-    if ("firstName" in data && data?.firstName)
-      formData.append("first_name", data?.firstName);
-    if ("lastName" in data && data?.lastName)
-      formData.append("last_name", data?.lastName);
-    if ("phoneNumber" in data && data?.phoneNumber)
-      formData.append("phone_number", data?.phoneNumber);
+    if ("firstName" in data && data.firstName) {
+      state.firstName = data.firstName;
+    }
+    if ("lastName" in data && data.lastName) {
+      state.lastName = data.lastName;
+    }
+    if ("phoneNumber" in data && data.phoneNumber) {
+      state.phoneNumber = data.phoneNumber;
+    }
+
     setFormStep(1);
   };
 

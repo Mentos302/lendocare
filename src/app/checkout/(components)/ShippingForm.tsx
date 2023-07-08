@@ -12,6 +12,7 @@ import classNames from "classnames";
 import { FC, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
+import { useCheckoutStore } from "@/modules/cart/store";
 
 type ShippingFormProps = {
   formData: FormData;
@@ -19,7 +20,8 @@ type ShippingFormProps = {
 };
 
 export const ShippingForm: FC<ShippingFormProps> = (props) => {
-  const { formData, setFormStep } = props;
+  const { setFormStep } = props;
+  const state = useCheckoutStore((state) => state);
 
   const [deliveryByCourier, setDeliveryByCourier] = useState(true);
   const [deliveryToBranch, setDeliveryToBranch] = useState(false);
@@ -97,17 +99,23 @@ export const ShippingForm: FC<ShippingFormProps> = (props) => {
 
   const onSubmit = (data: any) => {
     if (deliveryByCourier) {
-      if ("city" in data && data?.city) formData.append("city", data?.city);
-      if ("street" in data && data?.street)
-        formData.append("street", data?.street);
-      if ("building" in data && data?.building)
-        formData.append("building", data?.building);
-      if ("apartment" in data && data?.apartment)
-        formData.append("apartment", data?.apartment);
+      if ("city" in data && data.city) {
+        state.city = data.city;
+      }
+      if ("street" in data && data.street) {
+        state.street = data.street;
+      }
+      if ("building" in data && data.building) {
+        state.building = data.building;
+      }
+      if ("apartment" in data && data.apartment) {
+        state.apartment = data.apartment;
+      }
     }
     if (deliveryToBranch) {
-      if ("branch" in data && data?.branch)
-        formData.append("branch", data?.branch);
+      if ("branch" in data && data.branch) {
+        state.branch = data.branch;
+      }
     }
   };
 
@@ -176,7 +184,7 @@ export const ShippingForm: FC<ShippingFormProps> = (props) => {
               label="Ваша вулиця"
               placeholder="Введіть вашу вулицю"
             />
-            <div className="flex flex-col sm:flex-row gap-4 sm:gap-0 justify-between items-start">
+            <div className="w-full flex flex-col sm:flex-row gap-1 sm:gap-0 justify-between items-start">
               <Field
                 id="building"
                 {...register("building")}
@@ -184,14 +192,16 @@ export const ShippingForm: FC<ShippingFormProps> = (props) => {
                 labelError={Boolean(errors.building)}
                 label="Ваш будинок"
                 placeholder="Вкажіть ваш будинок"
+                className="w-[240px]"
               />
               <Field
                 id="apartment"
                 {...register("apartment")}
                 error={errors.apartment}
                 labelError={Boolean(errors.apartment)}
-                label="Ваша вулиця"
-                placeholder="Вкажіть вашу квартиру"
+                label="Номер квартири"
+                placeholder="Вкажіть номер квартиру"
+                className="w-[240px]"
               />
             </div>
           </>
