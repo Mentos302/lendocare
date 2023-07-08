@@ -11,7 +11,6 @@ import { useForm } from "react-hook-form";
 import { useCheckoutStore } from "@/modules/cart/store";
 
 type ContactInfoFormProps = {
-  formData: FormData;
   setFormStep: (val: number) => void;
 };
 

@@ -15,9 +15,7 @@ const Checkout = () => {
   const submitCheckout = useCheckout();
   const router = useRouter();
   const [formStep, setFormStep] = useState(0);
-  const ref = useRef(new FormData());
   const { cart } = useCartStore((state) => state);
-  const formData = ref.current;
 
   const confirmOrder = async () => {
     await submitCheckout();
@@ -35,10 +33,8 @@ const Checkout = () => {
       </div>
       <div className=" mb-10 flex flex-col lg:flex-row">
         <div className="lg:w-[60%]">
-          <ContactInfoForm formData={formData} setFormStep={setFormStep} />
-          {formStep >= 1 && (
-            <ShippingForm formData={formData} setFormStep={setFormStep} />
-          )}
+          <ContactInfoForm setFormStep={setFormStep} />
+          {formStep >= 1 && <ShippingForm setFormStep={setFormStep} />}
         </div>
         <div className="hidden lg:block mx-8 border-r border-r-light-gray" />
         <div className="lg:w-[40%]">
@@ -46,7 +42,10 @@ const Checkout = () => {
             Підсумок замовлення
           </div>
           {cart.map((item) => (
-            <div className="w-full flex gap-4 border-b border-b-light-gray py-5 first:pt-0">
+            <div
+              className="w-full flex gap-4 border-b border-b-light-gray py-5 first:pt-0"
+              key={item.id}
+            >
               <Link href={`/product/${item.lendoProductId}`}>
                 <div className="relative bg-gray-400 rounded-2xl min-w-[80px] h-24 scale-animation">
                   <Image

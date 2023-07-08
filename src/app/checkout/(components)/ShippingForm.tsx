@@ -15,7 +15,6 @@ import * as yup from "yup";
 import { useCheckoutStore } from "@/modules/cart/store";
 
 type ShippingFormProps = {
-  formData: FormData;
   setFormStep: (val: number) => void;
 };
 
