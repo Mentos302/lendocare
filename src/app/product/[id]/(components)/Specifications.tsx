@@ -1,5 +1,4 @@
 import Image from "next/image";
-import wheelchair from "../../../public/images/specs/wheelchair.png";
 
 type propTypes = {
   specs?: {

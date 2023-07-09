@@ -1,9 +1,26 @@
+"use client";
+
 import React from "react";
 import { SvgDateFinish, SvgDateStart, SvgInfo } from "../(svg)/AllSvg";
 import Link from "next/link";
-import Prices from "../catalog/(components)/Prices";
+import { useForm } from "react-hook-form";
+import * as yup from "yup";
+import { useYupValidationResolver } from "@/utils/useYupValidationResolver";
+import EmptyCart from "./(components)/EmptyCart";
 
 const Cart = () => {
+  const schema = yup.object().shape({
+    option: yup.string().required("Please select at least one option"),
+  });
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: useYupValidationResolver(schema),
+  });
+
   return (
     <div className="container-box mb-8">
       <div className="my-8 w-full border-t border-t-light-gray" />
@@ -16,7 +33,9 @@ const Cart = () => {
             <div className="w-full flex flex-col">
               <div className="flex items-center justify-between">
                 <div className="font-semibold">Rey Nylon Backpack</div>
-                <Prices />
+                <div className="border-2 border-primary-01 py-1 px-2 text-sm text-primary-01 font-semibold rounded-lg">
+                  1550 грн
+                </div>
               </div>
               <div className="h-full flex flex-col justify-between">
                 <div className="text-gray-03 text-sm font-medium">
@@ -32,8 +51,8 @@ const Cart = () => {
                   </div>
                 </div>
 
-                <div className="mt-3 sm:mt-0 flex justify-between items-center">
-                  <div className="flex gap-5 items-center">
+                <div className="mt-3 sm:mt-0 flex justify-end items-center">
+                  {/* <div className="flex gap-5 items-center">
                     <button className="flex justify-center items-center px-3 py-1 border hover:border-gray-03 scale-animation rounded-full">
                       -
                     </button>
@@ -41,7 +60,7 @@ const Cart = () => {
                     <button className="flex justify-center items-center px-3 py-1 border hover:border-gray-03 scale-animation rounded-full">
                       +
                     </button>
-                  </div>
+                  </div> */}
                   <button className="text-sm sm:text-base font-semibold text-primary-01 scale-animation">
                     Remove
                   </button>
@@ -56,7 +75,9 @@ const Cart = () => {
             <div className="w-full flex flex-col">
               <div className="flex items-center justify-between">
                 <div className="font-semibold">Rey Nylon Backpack</div>
-                <Prices />
+                <div className="border-2 border-primary-01 py-1 px-2 text-sm text-primary-01 font-semibold rounded-lg">
+                  1550 грн
+                </div>
               </div>
               <div className="h-full flex flex-col justify-between">
                 <div className="text-gray-03 text-sm font-medium">
@@ -72,8 +93,8 @@ const Cart = () => {
                   </div>
                 </div>
 
-                <div className="mt-3 sm:mt-0 flex justify-between items-center">
-                  <div className="flex gap-5 items-center">
+                <div className="mt-3 sm:mt-0 flex justify-end items-center">
+                  {/* <div className="flex gap-5 items-center">
                     <button className="flex justify-center items-center px-3 py-1 border hover:border-gray-03 scale-animation rounded-full">
                       -
                     </button>
@@ -81,7 +102,7 @@ const Cart = () => {
                     <button className="flex justify-center items-center px-3 py-1 border hover:border-gray-03 scale-animation rounded-full">
                       +
                     </button>
-                  </div>
+                  </div> */}
                   <button className="text-sm sm:text-base font-semibold text-primary-01 scale-animation">
                     Remove
                   </button>
@@ -96,7 +117,9 @@ const Cart = () => {
             <div className="w-full flex flex-col">
               <div className="flex items-center justify-between">
                 <div className="font-semibold">Rey Nylon Backpack</div>
-                <Prices />
+                <div className="border-2 border-primary-01 py-1 px-2 text-sm text-primary-01 font-semibold rounded-lg">
+                  1550 грн
+                </div>
               </div>
               <div className="h-full flex flex-col justify-between">
                 <div className="text-gray-03 text-sm font-medium">
@@ -112,8 +135,8 @@ const Cart = () => {
                   </div>
                 </div>
 
-                <div className="mt-3 sm:mt-0 flex justify-between items-center">
-                  <div className="flex gap-5 items-center">
+                <div className="mt-3 sm:mt-0 flex justify-end items-center">
+                  {/* <div className="flex gap-5 items-center">
                     <button className="flex justify-center items-center px-3 py-1 border hover:border-gray-03 scale-animation rounded-full">
                       -
                     </button>
@@ -121,7 +144,7 @@ const Cart = () => {
                     <button className="flex justify-center items-center px-3 py-1 border hover:border-gray-03 scale-animation rounded-full">
                       +
                     </button>
-                  </div>
+                  </div> */}
                   <button className="text-sm sm:text-base font-semibold text-primary-01 scale-animation">
                     Remove
                   </button>
@@ -171,6 +194,7 @@ const Cart = () => {
           </div>
         </div>
       </div>
+      {/* <EmptyCart className="my-10 border border-light-blue rounded-lg shadow-field" /> */}
     </div>
   );
 };

@@ -32,9 +32,9 @@ const Accordion: FC<AccordionProps> = (props) => {
       {questions.map((item, index) => (
         <Disclosure key={index}>
           {({ open }) => (
-            <div className="w-full lg:w-[550px] xl:w-[678px] border border-gray-04 rounded-2xl">
+            <div className="w-full lg:w-[550px] xl:w-[678px] border border-gray-border rounded-2xl">
               <Disclosure.Button className="text-start flex justify-between items-center w-full p-6">
-                <h3 className=" font-bold">{item.question}</h3>{" "}
+                <h3 className="text-lg font-bold">{item.question}</h3>{" "}
                 <SvgArrow
                   className={`${
                     open ? "rotate-180" : ""

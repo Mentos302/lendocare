@@ -17,7 +17,7 @@ const PopularProducts = () => {
         <div className="flex flex-wrap justify-center gap-4 md:gap-6">
           <Link
             href="/catalog?cat=153"
-            className="w-[286px] border border-gray-04 rounded-2xl scale-animation p-y4"
+            className="w-[286px] border border-gray-border rounded-2xl scale-animation p-y4"
           >
             <div
               className="relative p-4"
@@ -41,7 +41,7 @@ const PopularProducts = () => {
           </Link>
           <Link
             href="/catalog?cat=153"
-            className="w-[286px] border border-gray-04 rounded-2xl scale-animation overflow-hidden"
+            className="w-[286px] border border-gray-border rounded-2xl scale-animation overflow-hidden"
           >
             <div
               className="relative p-4"
@@ -66,7 +66,7 @@ const PopularProducts = () => {
           </Link>
           <Link
             href="/catalog?cat=154"
-            className="w-[286px] border border-gray-04 rounded-2xl scale-animation"
+            className="w-[286px] border border-gray-border rounded-2xl scale-animation"
           >
             <div
               className="relative p-4"
@@ -90,7 +90,7 @@ const PopularProducts = () => {
           </Link>
           <Link
             href="/catalog?cat=154"
-            className="w-[286px] border border-gray-04 rounded-2xl scale-animation"
+            className="w-[286px] border border-gray-border rounded-2xl scale-animation"
           >
             <div
               className="relative p-4"

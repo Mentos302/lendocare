@@ -7,6 +7,8 @@ import ProductGallery from "./ProductGallery";
 import { Product } from "@/app/types";
 import ProductPricing from "./ProductPricing";
 import HowItWorks from "./HowItWorks";
+import { getFirstSentence } from "@/utils/getFirstSentence";
+import { Ordering } from "./Ordering";
 
 type propTypes = { product: Product };
 
@@ -27,11 +29,13 @@ const ProductMain = ({ product }: propTypes) => {
         >
           <>
             <ProductBreadcrumb product={product} />
-            <h1 className="font-semibold text-2xl md:text-4xl leading-12 xl:text-[50px] text-gray-01 mb-4">
+            <h1 className="font-semibold text-2xl md:text-4xl leading-12 text-gray-01 mb-4">
               {product.name}
             </h1>
             <p className="text-sm sm:text-base text-gray-05 mb-5">
-              Легкий алюмінієвий самохідний інвалідний візок Drive 18
+              {getFirstSentence(
+                product.description.replace(/<\/?[^>]+(>|$)/g, "")
+              )}
             </p>
             <Specifications />
             <a
@@ -40,7 +44,14 @@ const ProductMain = ({ product }: propTypes) => {
             >
               Детальніше
             </a>
-            <ProductPricing pricing={product.pricePlan} />
+            <ProductPricing pricing={product.pricePlan}>
+              <Ordering
+                name={product.name}
+                prices={product.pricePlan.priceSchedule}
+                id={product.lendoProductId}
+                thumb={product.image}
+              />
+            </ProductPricing>
             <HowItWorks />
           </>
         </Sticky>

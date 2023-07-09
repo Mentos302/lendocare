@@ -1,6 +1,6 @@
 import React from "react";
-import hero from "../../../public/images/hero.png";
-import heroMobile from "../../../public/images/hero-mobile.png";
+import hero from "/public/images/hero.png";
+import heroMobile from "/public/images/hero-mobile.png";
 import Image from "next/image";
 import { SvgHeroArrow } from "../(svg)/AllSvg";
 import Link from "next/link";

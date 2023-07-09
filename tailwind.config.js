@@ -1,9 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "",
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/react-tailwindcss-datepicker/dist/index.esm.js",
   ],
   theme: {
     extend: {
@@ -17,11 +20,12 @@ module.exports = {
         "gray-03": "#637381",
         "gray-04": "#AFB7C3",
         "gray-05": "#545454",
+        "gray-border": "#D1D1D1",
         "light-blue": "#F6F7FA",
         "light-gray": "#F7F7F7",
+        "thank-blue": "#F6FBFF"
       },
       boxShadow: {
-    
         field: "0px 1px 2px rgba(0, 0, 0, 0.05);",
       },
     },

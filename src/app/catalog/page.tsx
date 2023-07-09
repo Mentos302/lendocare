@@ -38,7 +38,7 @@ export default function Catalog() {
                   <SvgCatalogDude />
                 </div>
               </div>
-              <div className="hidden lg:block border border-r-light-gray mx-6"></div>
+              <div className="hidden lg:block border border-light-gray mx-6"></div>
 
               <div className="mt-5 lg:mt-0 w-full lg:w-[80%]">
                 <ProductsList categories={categories} />

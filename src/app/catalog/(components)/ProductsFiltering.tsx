@@ -81,7 +81,8 @@ const ProductsFiltering: FC<ProductsFilteringProps> = (props) => {
         >
           <input
             className="h-4 w-4 text-sm cursor-pointer accent-primary-01 focus:ring-0 focus:ring-offset-0"
-            type="checkbox"
+            type="radio"
+            name="sort"
             id="popular"
           />
           За популярністю
@@ -94,11 +95,13 @@ const ProductsFiltering: FC<ProductsFilteringProps> = (props) => {
         >
           <input
             className="h-4 w-4 text-sm cursor-pointer accent-primary-01 focus:ring-0 focus:ring-offset-0"
-            type="checkbox"
+            type="radio"
+            name="sort"
             id="cheap"
           />
           Спочатку дешеві
         </label>
+
         <label
           className={classNames(
             "flex gap-3 items-center cursor-pointer text-gray-01 text-sm font-medium"
@@ -106,7 +109,8 @@ const ProductsFiltering: FC<ProductsFilteringProps> = (props) => {
         >
           <input
             className="h-4 w-4 text-sm cursor-pointer accent-primary-01 focus:ring-0 focus:ring-offset-0"
-            type="checkbox"
+            type="radio"
+            name="sort"
             id="expensive"
           />
           Спочатку дорогі

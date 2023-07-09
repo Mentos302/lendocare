@@ -1,20 +1,35 @@
 export interface CartItem {
+  id: string;
   lendoProductId: number;
-  quantity: number;
-  deliveryType: string;
-  fromDate: Date | null;
-  toDate: Date | null;
+  name: string;
+  thumb: string;
+  price: number;
+  startDate: null | Date | string;
+  endDate: null | Date | string;
 }
 
 export interface initialStateType {
   cart: CartItem[];
+  [key: string]: any;
 }
 
 export interface CartState {
   cart: CartItem[];
   addToCart: (product: CartItem) => void;
-  removeFromCart: (productId: number) => void;
-  updateQuantity: (productId: number, action: "increase" | "decrease") => void;
+  removeFromCart: (itemId: string) => void;
+  emptyCart: () => void;
   toggleCart: () => void;
   showCart: boolean;
+  setShowCart: (values: boolean) => void
+}
+
+export interface CheckoutState {
+  firstName?: string;
+  lastName?: string;
+  phoneNumber?: string;
+  city?: string;
+  street?: string;
+  building?: string;
+  apartment?: string;
+  branch?: string;
 }
