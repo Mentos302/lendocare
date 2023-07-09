@@ -96,14 +96,16 @@ const ProductsList = ({ categories }: { categories: number[] }) => {
                   {product.lendoProduct.name}
                 </div>
                 <div className="pb-5 min-h-[120px] flex justify-end h-full flex-col">
-                  <div className="h-20 text-sm overflow-hidden whitespace-no-wrap text-ellipsis">
-                    {getFirstSentence(
-                      product.lendoProduct.description.replace(
-                        /<\/?[^>]+(>|$)/g,
-                        ""
-                      )
-                    )}
-                  </div>
+                  {product.lendoProduct.description ? (
+                    <div className="h-20 text-sm overflow-hidden whitespace-no-wrap text-ellipsis">
+                      {getFirstSentence(
+                        product.lendoProduct.description.replace(
+                          /<\/?[^>]+(>|$)/g,
+                          ""
+                        )
+                      )}
+                    </div>
+                  ) : null}
                   <div className="p-1 text-center border-2 border-primary-01 rounded-lg text-primary-01 font-semibold text-lg scale-animation">
                     Від 200₴ / тиждень
                   </div>
