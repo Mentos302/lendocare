@@ -68,27 +68,27 @@ const ProductInfo = ({ product }: propTypes) => {
             {/* <div className="absolute bottom-0 w-full border-b-4" /> */}
           </Tab.List>
           <Tab.Panels>
-            <Tab.Panel>
-              <div className="p-7 rounded-lg bg-white">
-                <b className="block text-bold text-2xl mb-5">Опис</b>
-                <div className="text-bold text-base sm:text-lg">
-                  {parse(product.description)}
+            {product.description ? (
+              <Tab.Panel>
+                <div className="p-7 rounded-lg bg-white">
+                  <b className="block text-bold text-2xl mb-5">Опис</b>
+                  <div className="text-bold text-base sm:text-lg">
+                    {parse(product.description)}
+                  </div>
                 </div>
-              </div>
-            </Tab.Panel>
+              </Tab.Panel>
+            ) : null}
             <Tab.Panel>
               <div className="p-7 rounded-lg bg-white">
                 <b className="block text-bold text-2xl mb-5">Характеристики</b>
-                <div className="text-bold text-base sm:text-lg">
-                  {parse(product.description)}
-                </div>
+                <div className="text-bold text-base sm:text-lg"></div>
               </div>
             </Tab.Panel>
             <Tab.Panel>
               <div className="p-7 rounded-lg bg-white">
                 <b className="block text-bold text-2xl mb-5">Доставка</b>
                 <div className="text-bold text-base sm:text-lg">
-                  {parse(product.description)}
+                  Інформація про доставку
                 </div>
               </div>
             </Tab.Panel>

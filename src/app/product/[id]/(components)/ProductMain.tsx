@@ -33,9 +33,11 @@ const ProductMain = ({ product }: propTypes) => {
               {product.name}
             </h1>
             <p className="text-sm sm:text-base text-gray-05 mb-5">
-              {getFirstSentence(
-                product.description.replace(/<\/?[^>]+(>|$)/g, "")
-              )}
+              {product.description
+                ? getFirstSentence(
+                    product.description.replace(/<\/?[^>]+(>|$)/g, "")
+                  )
+                : null}
             </p>
             <Specifications />
             <a
