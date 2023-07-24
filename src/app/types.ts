@@ -3,6 +3,11 @@ export type ProductResponse = {
   pricePlan: Pricing;
 };
 
+export type productSpecification ={
+  name: string;
+  measurement: string;
+};
+
 export type Product = {
   productId: number;
   subCategory: {
@@ -17,12 +22,12 @@ export type Product = {
   image2: string | null;
   image3: string | null;
   description: string;
-  productSpecifications: {
-    name: string;
-    measurement: string;
-  };
+  productSpecifications: productSpecification[]
   pricePlan: Pricing;
   lendoProductId: number;
+  width: number;
+  length: number;
+  height: number;
 };
 
 export type Pricing = {

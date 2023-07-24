@@ -39,7 +39,7 @@ const ProductMain = ({ product }: propTypes) => {
                   )
                 : null}
             </p>
-            <Specifications />
+            <Specifications product={product} />
             <a
               href="#details"
               className="block font-medium text-sm text-primary-01 mb-4"
