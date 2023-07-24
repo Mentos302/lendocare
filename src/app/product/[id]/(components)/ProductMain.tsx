@@ -24,7 +24,7 @@ const ProductMain = ({ product }: propTypes) => {
         <Sticky
           enabled={photos.length === 1}
           top={50}
-          bottomBoundary={1380}
+          bottomBoundary={1300}
           className="mx-auto lg:w-[500px] xl:min-w-[580px]"
         >
           <>

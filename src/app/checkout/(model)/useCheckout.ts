@@ -42,10 +42,9 @@ export const useCheckout = () => {
       rentStartDate: new Date(order[0].startDate!).toISOString(),
       rentEndDate: new Date(order[0].endDate!).toISOString(),
       location: {
-        postcode: null,
+        countryCodeAlpha2: process.env.NEXT_PUBLIC_COUNTRY_CODE,
       },
       cart: true,
-      countryCode: process.env.NEXT_PUBLIC_COUNTRY_CODE,
     });
 
     const orderId = creatingResponse.data.orderReceipt.orderId;
@@ -79,13 +78,13 @@ export const useCheckout = () => {
             line1: "Нова пошта",
             line2: "Відділення " + branch,
             townOrCity: city,
-            postcode: "",
+            countryCodeAlpha2: process.env.NEXT_PUBLIC_COUNTRY_CODE,
           }
         : {
             line1: checkout.street + " " + checkout.building,
             line2: checkout.apartment,
             townOrCity: checkout.city,
-            postcode: "",
+            countryCodeAlpha2: process.env.NEXT_PUBLIC_COUNTRY_CODE,
           },
       instructions: null,
       vatExempt: false,

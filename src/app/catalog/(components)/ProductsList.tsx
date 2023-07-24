@@ -15,7 +15,9 @@ import { getFirstSentence } from "@/utils/getFirstSentence";
 async function getProducts(categories: number[]) {
   const res = await apiClient.post("enquiry", {
     productSubCategoryIds: categories.length ? categories : ALL_CATEGORIES,
-    countryCode: process.env.NEXT_PUBLIC_COUNTRY_CODE,
+    location: {
+      countryCodeAlpha2: process.env.NEXT_PUBLIC_COUNTRY_CODE,
+    },
   });
 
   return res.data;

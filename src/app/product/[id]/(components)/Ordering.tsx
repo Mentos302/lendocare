@@ -148,7 +148,7 @@ export const Ordering: FC<OrderingPropsType> = (props) => {
           </Transition.Child>
 
           <div className="fixed inset-0 z-10 overflow-y-auto">
-            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            <div className="flex min-h-full items-start justify-center p-4 text-center lg:items-center sm:p-0">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -160,11 +160,10 @@ export const Ordering: FC<OrderingPropsType> = (props) => {
               >
                 <Dialog.Panel className="relative min-h-fit md:min-w-[700px] flex transform rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg">
                   <div className="flex flex-col gap-2 md:gap-5 p-5">
-                    <div className="flex flex-col md:flex-row gap-2 md:gap-5 text-gray-01">
+                    <div className="hidden lg:flex flex-col md:flex-row gap-2 md:gap-5 text-gray-01">
                       <div className="w-full flex flex-col how-it-works-bg-2 items-center p-2.5 rounded-lg">
                         <span className="text-sm">
-                          До <b>{Math.floor(prices[0].untilNight / 7)}</b>{" "}
-                          тижнів
+                          До {Math.floor(prices[0].untilNight / 7)} тижнів
                         </span>
                         <b className="text-xl font-semibold">
                           {prices[0].totalPrice / 100}
@@ -173,12 +172,9 @@ export const Ordering: FC<OrderingPropsType> = (props) => {
                       </div>
                       <div className="w-full flex flex-col how-it-works-bg-4  items-center p-2.5 rounded-lg">
                         <span className="text-sm">
-                          <b>
-                            {Math.floor(prices[1].fromNight / 7)}
-                            {" - "}
-                            {Math.floor(prices[1].untilNight / 7)}{" "}
-                          </b>
-                          тижнів
+                          {Math.floor(prices[1].fromNight / 7)}
+                          {" - "}
+                          {Math.floor(prices[1].untilNight / 7)} тижнів
                         </span>
                         <b className="text-xl font-semibold">
                           {Math.floor(prices[1].totalPrice / 100)}
@@ -187,8 +183,7 @@ export const Ordering: FC<OrderingPropsType> = (props) => {
                       </div>
                       <div className="w-full flex flex-col how-it-works-bg-3  items-center p-2.5 rounded-lg">
                         <span className="text-sm">
-                          Більше <b>{Math.floor(prices[2].fromNight / 7)}</b>{" "}
-                          тижнів
+                          Більше {Math.floor(prices[2].fromNight / 7)} тижнів
                         </span>
                         <b className="text-xl font-semibold">
                           {Math.floor(prices[2].totalPrice / 100)}
@@ -198,7 +193,9 @@ export const Ordering: FC<OrderingPropsType> = (props) => {
                     </div>
                     <div className="flex flex-col md:flex-row gap-2 md:gap-5 ">
                       <div className="w-full flex flex-col items-center  p-10 px-8 rounded-lg bg-primary-01  text-center justify-between gap-3 sm:gap-5 text-white">
-                        <SvgExactPeriod />
+                        <div className="hidden lg:block">
+                          <SvgExactPeriod />
+                        </div>
                         <b className="text-xl sm:text-2xl font-semibold">
                           Точний період користування
                         </b>
@@ -219,6 +216,7 @@ export const Ordering: FC<OrderingPropsType> = (props) => {
                             minDate={new Date()}
                             startWeekOn="mon"
                             displayFormat={"DD/MM/YYYY"}
+                            
                           />
                         </div>
                         <div
@@ -229,7 +227,9 @@ export const Ordering: FC<OrderingPropsType> = (props) => {
                         </div>
                       </div>
                       <div className="w-full flex flex-col items-center p-10 px-8 rounded-lg bg-primary-50 text-center justify-between gap-3 sm:gap-5 text-gray-01">
-                        <SvgFlexiblePeriod />
+                        <div className="hidden lg:block">
+                          <SvgFlexiblePeriod />
+                        </div>
                         <b className="text-xl sm:text-2xl font-semibold">
                           Гнучкий період користування
                         </b>

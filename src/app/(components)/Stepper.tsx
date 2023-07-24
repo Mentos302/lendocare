@@ -38,7 +38,7 @@ const Stepper = () => {
               href="/catalog"
               className="w-fit px-4 pb-4 sm:pb-8 sm:px-8 font-semibold text-primary-01 text-start scale-animation"
             >
-              Каталог
+              Обрати
             </Link>
           </div>
           <div className="flex flex-col justify-between w-full md:w-[340px] lg:w-[365px] border border-gray-border rounded-2xl bg-white">
@@ -52,7 +52,7 @@ const Stepper = () => {
                 <div className="text-gray-01">
                   <Link
                     href="/catalog"
-                    className="mb-3 text-base sm:text-xl font-semibold"
+                    className="block mb-3 text-base sm:text-xl font-semibold"
                   >
                     Оформіть замовлення
                   </Link>
@@ -93,7 +93,7 @@ const Stepper = () => {
               href="/catalog"
               className="w-fit px-4 pb-4 sm:pb-8 sm:px-8 font-semibold text-primary-01 text-start scale-animation"
             >
-              Каталог
+              Орендувати
             </Link>
           </div>
         </div>

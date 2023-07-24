@@ -19,13 +19,13 @@ const Hero = () => {
                 Оренда речей
               </div>
               <div className="font-semibold text-4xl sm:text-[50px] text-primary-01">
-                LendoCare
+                можливості
               </div>
             </div>
             <div className="text-lg font-medium text-gray-01">
-              Оренда обладнання для людей в інвалідністю без жодних проблем.
-              Забезпечення доступності медичного обладнання та технологій для
-              використання вдома через оренду.
+              LendoCare - це можливість, яка дозволить вам полегшити своє життя.
+              Не обмежуйте себе своїм становищем - почувайтесь незалежним з
+              нашою допомогою.
             </div>
             <div className="sm:pt-4 space-x-4 sm:space-x-6">
               <Link href="/catalog" className="btn-primary">
