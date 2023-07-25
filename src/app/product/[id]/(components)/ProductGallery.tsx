@@ -21,7 +21,7 @@ const ProductGallery = ({ product }: propTypes) => {
           },
         }}
       >
-        <a data-fancybox="gallery" href={thumbnail} className="block mb-5">
+        <a data-fancybox="gallery" href={thumbnail} className="block mb-6">
           <Image
             width={578}
             height={578}
@@ -31,22 +31,40 @@ const ProductGallery = ({ product }: propTypes) => {
           />
         </a>
         <div className="flex gap-5 px-3">
-          {photos.map((photo, i) => (
+          {photos.length === 1 ? (
             <a
               data-fancybox="gallery"
-              href={photo}
-              className="block mb-3"
-              key={i}
+              href={photos[0]}
+              className="block relative w-full mb-3 lg:h-[600px]"
             >
               <Image
-                width={115}
-                height={115}
-                src={photo}
+                src={photos[0]}
                 className="w-full rounded-2xl"
                 alt="product image"
+                fill
+                style={{ objectFit: "contain", objectPosition: "center" }}
               />
             </a>
-          ))}
+          ) : (
+            <div className={`relative w-full grid grid-cols-${photos.length}`}>
+              {photos.map((photo, i) => (
+                <a
+                  data-fancybox="gallery"
+                  href={photo}
+                  className="block"
+                  key={i}
+                >
+                  <Image
+                    width={115}
+                    height={115}
+                    src={photo}
+                    className="w-full h-[320px] rounded-2xl object-contain"
+                    alt="product image"
+                  />
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       </Fancybox>
     </div>

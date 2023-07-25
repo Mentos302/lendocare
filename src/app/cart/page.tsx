@@ -7,8 +7,12 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { useYupValidationResolver } from "@/utils/useYupValidationResolver";
 import EmptyCart from "./(components)/EmptyCart";
+import { useCartStore } from "@/modules/cart/store";
 
 const Cart = () => {
+  const { showCart, setShowCart, toggleCart, cart, removeFromCart } =
+    useCartStore((state) => state);
+
   const schema = yup.object().shape({
     option: yup.string().required("Please select at least one option"),
   });

@@ -11,7 +11,9 @@ type propTypes = { params: { id: number } };
 async function getProduct(id: number) {
   const res = await apiClient.post("enquiry", {
     lendoProductIds: [id],
-    countryCode: process.env.NEXT_PUBLIC_COUNTRY_CODE,
+    location: {
+      countryCodeAlpha2: process.env.NEXT_PUBLIC_COUNTRY_CODE,
+    },
   });
 
   return res.data.length ? res.data[0] : null;

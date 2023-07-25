@@ -1,27 +1,29 @@
 export interface Question {
-   question: string;
-   answer: string;
- }
+  question: string;
+  answer: string;
+}
 
 export const questions = [
   {
-    question: "Найчастіше питання? Найчас тіше пита Найчас тіше питанн яння?",
+    question: "Як орендувати обладнання?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo feugiat ultricies. Praesent in mollis elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; ",
+      "Щоб орендувати обладнання вам потрібно зробити декілька кроків: зайти в каталог - обрати те, що вас цікавить - обрати термін оренди - оформити замовлення.",
   },
   {
-    question: "Найчастіше питання?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo feugiat ultricies. Praesent in mollis elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; ",
+    question: "Який мінімальний терміни оренди?",
+    answer: "Мінімальний термін оренди складає 1 тиждень.",
   },
   {
-    question: "Найчастіше питання?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo feugiat ultricies. Praesent in mollis elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; ",
+    question: "Чи можлива доставка обладнання додому?",
+    answer: `Так, така можливість є. Доставка здійснюється перевізником "Нова Пошта". Ви можете обрати адресну доставку кур’єра при оформленні замовленняю.`,
   },
   {
-    question: "Найчастіше питання?",
+    question: "Чи є знижки для учасників бойових дій?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo feugiat ultricies. Praesent in mollis elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; ",
+      "Так, знижка для учасників бойових дій - 10%. Для того щоб отримати знижку, потрібно надіслати нам документ який підтверджує, що ви справді є учасником бойових дій.",
+  },
+  {
+    question: "Чи можна придбати обладнання після певного часу оренди?",
+    answer: "На жаль, поки такої можливості немає.",
   },
 ];
