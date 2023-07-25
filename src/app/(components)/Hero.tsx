@@ -23,9 +23,9 @@ const Hero = () => {
               </div>
             </div>
             <div className="text-lg font-medium text-gray-01">
-              LendoCare - це можливість, яка дозволить вам полегшити своє життя.
-              Не обмежуйте себе своїм становищем - почувайтесь незалежним з
-              нашою допомогою.
+              LendoCare - це сервіс, який дозволить вам полегшити своє життя. Не
+              обмежуйте себе своїм становищем - почувайтесь незалежним з нашою
+              допомогою.
             </div>
             <div className="sm:pt-4 space-x-4 sm:space-x-6">
               <Link href="/catalog" className="btn-primary">

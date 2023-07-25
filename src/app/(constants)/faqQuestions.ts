@@ -7,26 +7,23 @@ export const questions = [
   {
     question: "Як орендувати обладнання?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo feugiat ultricies. Praesent in mollis elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; ",
+      "Щоб орендувати обладнання вам потрібно зробити декілька кроків: зайти в каталог - обрати те, що вас цікавить - обрати термін оренди - оформити замовлення.",
   },
   {
     question: "Який мінімальний терміни оренди?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo feugiat ultricies. Praesent in mollis elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; ",
+    answer: "Мінімальний термін оренди складає 1 тиждень.",
   },
   {
     question: "Чи можлива доставка обладнання додому?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo feugiat ultricies. Praesent in mollis elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; ",
+    answer: `Так, така можливість є. Доставка здійснюється перевізником "Нова Пошта". Ви можете обрати адресну доставку кур’єра при оформленні замовленняю.`,
   },
   {
     question: "Чи є знижки для учасників бойових дій?",
     answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo feugiat ultricies. Praesent in mollis elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; ",
+      "Так, знижка для учасників бойових дій - 10%. Для того щоб отримати знижку, потрібно надіслати нам документ який підтверджує, що ви справді є учасником бойових дій.",
   },
   {
     question: "Чи можна придбати обладнання після певного часу оренди?",
-    answer:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus commodo feugiat ultricies. Praesent in mollis elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; ",
+    answer: "На жаль, поки такої можливості немає.",
   },
 ];
